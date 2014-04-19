@@ -13,29 +13,38 @@ class Slide{
   int currentImage = 0;
  
   
-  Slide(File file, ArrayList images, File videoFile, int index) {
+  Slide(File file, ArrayList images, File videoFile, String draftText, int index) {
     
     this.file = file;
     this.images = images;
+
     if (this.file != null) {
     	this.lines = loadStrings(file.getPath());
-	}
+    }
+
     if (images.size() > 0) {
 
     this.imageFile = (File) images.get(currentImage);
 
-    if (this.imageFile != null) {
-      this.img = loadImage(this.imageFile.getPath());
-      scaleImage();
+      if (this.imageFile != null) {
+        this.img = loadImage(this.imageFile.getPath());
+        scaleImage();
+	     }
 
-	}
-}
+    }
 
 	this.videoFile = videoFile;
 
 	this.textAlpha = 255;
 
   this.index = index;
+
+  if (this.videoFile == null && this.imageFile == null && this.file == null) {
+
+    this.lines = new String[1];
+    this.lines[0] = draftText;
+    
+  }
     
     
   }

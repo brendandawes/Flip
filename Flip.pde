@@ -405,7 +405,7 @@ void drawVideo() {
 
 
 void drawText(Slide slide, float x, float y) {
-  if (slide.file != null) {
+  if (slide.lines != null) {
     
     x = x-width+max(100,(width/10.0));
     String lines[] = slide.lines;
@@ -507,8 +507,9 @@ void getSlides() {
     
       }
     
+    String folderName = slideFolder.getName();
       
-    Slide slide = new Slide(textFile, images,videoFile,j);
+    Slide slide = new Slide(textFile, images,videoFile,folderName,j);
 
     slides.add(slide);
   
