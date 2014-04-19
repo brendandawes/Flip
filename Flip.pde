@@ -388,20 +388,7 @@ void scrubVideo(float val) {
 
 
 
-void drawVideo() {
-  noStroke();
-  if (movie != null) {
-    int w = movie.width;
-    int h = movie.height;
-  if (w > width || h > height) {
-    float ratio = min(float(width)/ w, float(height)/ h);
-    w = int(movie.width*ratio);
-    h = int(movie.height*ratio);
-  }
-    //image(movie, width/2-w/2, height/2-h/2, w, h);
-  }
 
-}
 
 
 void drawText(Slide slide, float x, float y) {
