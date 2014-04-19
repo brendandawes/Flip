@@ -1,0 +1,14 @@
+.DS_Store
+applet
+application.linux
+application.macosx
+application.macosx32
+application.macosx64
+application.windows
+*.zip
+*.pdf
+*.jar
+*.vlw
+*.tif
+*.class
+*.java

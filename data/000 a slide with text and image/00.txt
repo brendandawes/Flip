@@ -1,0 +1,4 @@
+A slide
+with some text and image
+
+Press right to continue

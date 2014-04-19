@@ -1,0 +1,3 @@
+A slide with video
+
+Press SPACE to play
