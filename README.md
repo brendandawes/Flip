@@ -10,7 +10,7 @@ It's also very much a work-in-progress; far from perfect but hopefully it's some
 How it works
 ------------
 
-Flip is a viewer rather than an editor, meaning that there is no editing or slide construction within Flip itself. All slides are constructed as folders in the same directory as the Flip application. Each folder may contain a text file, a video file or multiple images.
+Flip is a viewer rather than an editor, meaning that there is no editing or slide construction within Flip itself. All slides are constructed as folders in the same directory as the exported Flip application. Each folder may contain a text file, a video file or multiple images.
 
 Tip: you can quickly put an outline for a presentation together just by making a series of folders then adding content as you need to.
 
