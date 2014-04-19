@@ -145,21 +145,19 @@ void loadSettings() {
   String typeface = settings.getString("typeface");
 
   font = createFont(typeface, typeSize);
+
   textFont(font);
+
   textAlign(LEFT, TOP);
-  println("textAscent()+textDescent(): "+(textAscent()));
+
   textBaselineAdjust = typeSize - textAscent();
-  //typeSize = int((textAscent()+textDescent()));
-
-
+  
 }
 
 void draw() {
   
   background(backgroundColor);
   pointLight(255, 255, 255, width/2, height/2, 2000);
-
-
   pushMatrix();
     translate(sceneX, sceneY, sceneZ);
     scale(0.5);
@@ -175,6 +173,7 @@ void draw() {
 }
 
 void showLayout() {
+
   float x = 0;
   float y = 0;
   float z;
@@ -192,18 +191,14 @@ void showLayout() {
     z = 0;
    
     pushMatrix();
-    if (isIntroMode) {
-
-      rotateY(radians(frameCount*i)/20);
-     
-    } 
+      if (isIntroMode) {
+        rotateY(radians(frameCount*i)/20);
+      } 
       translate(x, y, z);
       drawBackground(0,0,i);
       drawImage(slide,0,0);
       drawText(slide,0,0);
     popMatrix();
- 
-
   }
 
 }
@@ -212,11 +207,10 @@ void showLayout() {
 float[] getXY(int i) {
 
   float[] coords = new float[2];
-
   coords[0] = floor((i*xStep)%totalWidth);
   coords[1] = floor((i*xStep)/totalWidth)*yStep;
-
   return coords;
+
 }
 
 
@@ -225,7 +219,6 @@ void showOverview() {
   isEditMode = true;
   Ani.to(this, 2.0, "rotx", radians(-30));
   Ani.to(this, 2.0, "roty", radians(25));
-  //Ani.to(this, 5.0, "sceneX", -width);
   Ani.to(this, 5.0, "sceneZ", -2000);
 
 }
@@ -233,7 +226,7 @@ void showOverview() {
 void showIntro() {
 
   isEditMode = true;
-   Ani.to(this, 2.0, "rotx", radians(-45));
+  Ani.to(this, 2.0, "rotx", radians(-45));
   Ani.to(this, 5.0, "roty", radians(-45));
   Ani.to(this, 5.0, "sceneZ", -1500);
 
@@ -248,6 +241,7 @@ void drawTitle() {
   rotateX(radians(15));
   drawTextBlocks(lines,0,0,color(100),255);
   popMatrix();
+  
 }
 
 void drawBackground(float x, float y,int slideNumber) {
@@ -392,13 +386,14 @@ void scrubVideo(float val) {
 
 
 void drawText(Slide slide, float x, float y) {
+
   if (slide.lines != null) {
-    
     x = x-width+max(100,(width/10.0));
     String lines[] = slide.lines;
     float fillAlpha = slide.textAlpha;
     drawTextBlocks(lines,x,y,backgroundColor,fillAlpha);
-}
+  }
+
 }
 
 void drawTextBlocks(String lines[],float x, float y,color fillColor,float fillAlpha) {
@@ -410,23 +405,21 @@ void drawTextBlocks(String lines[],float x, float y,color fillColor,float fillAl
     y = (j*typeSize)-yOffset/2;
     y  = floor( y / 60 ) * 60 ;
     pushMatrix();
-    pushMatrix();
-    fill(fillColor,fillAlpha);
-    float w = textWidth(lines[j]);
-    translate(x+(w/2),y+typeSize/1.5,50);
-   if (lines[j].length() > 0) {
-    box(w,typeSize+2,100);
+      pushMatrix();
+        fill(fillColor,fillAlpha);
+        float w = textWidth(lines[j]);
+        translate(x+(w/2),y+typeSize/1.5,50);
+        if (lines[j].length() > 0) {
+          box(w,typeSize+2,100);
+        }
+      popMatrix();
+      pushMatrix();
+        translate(0, 0, 101);
+        fill(250,fillAlpha);
+        text(lines[j], x, (y-3)+textBaselineAdjust);
+      popMatrix();
+    popMatrix();
   }
-    popMatrix();
-    pushMatrix();
-    translate(0, 0, 101);
-    
-    fill(250,fillAlpha);
-    text(lines[j], x, (y-3)+textBaselineAdjust);
-    popMatrix();
-    popMatrix();
-   
-    }
 
 }
 
@@ -631,70 +624,7 @@ void sequenceEnd() {
   seq.pause();
 }
 
-void keyReleased() {
- 
-  if (key == CODED) {
-    if (keyCode == LEFT) {
-      prevSlide();
-    } 
 
-    if (keyCode == RIGHT) {
-      nextSlide();
-      //Ani.to(this, 1.5, "sceneY", (width/2)-(width*currentSlide));
-    }
-
-    if (keyCode == DOWN) {
-
-     down();
-
-    }
-
-    if (keyCode == UP) {
-
-      up();
-
-    }
-
-    if (keyCode == SHIFT) {
-
-      if (isTypeVisible) {
-        fadeOutTextCurrentSlide();
-      } else {
-        fadeInTextCurrentSlide();
-      }
-
-    }
-
-
-  } 
-
-
- if (key == 'f') {
-  toggleZoom();
-   // Ani.to(this, 1.5, "roty", PI/4);
- }
-
-  if (key == 'i') {
-  toggleIntro();
- }
-
-if (key == '0') {
-
-  startPresentation();
-
-}
-
-if (key == ' ') {
-  playVideo();
-}
-
-if (key == 'r') {
-  resetVideo();
-
-  initApp();
-}
-  
-}
 
 void mouseDragged() {
   mouseDragging = true;
@@ -718,24 +648,7 @@ void mouseReleased() {
 
 
 
-void oscEvent(OscMessage theOscMessage) {
 
-    String addr = theOscMessage.addrPattern();
-    float  val  = theOscMessage.get(0).floatValue();
-    println("val: "+val);
-
-    if(addr.equals("/1/zoom") && val == 1.0)        { toggleZoom(); }
-    if(addr.equals("/1/nextslide") && val == 1.0)        { nextSlide(); }
-    if(addr.equals("/1/prevslide") && val == 1.0)        { prevSlide(); }
-    if(addr.equals("/1/up") && val == 1.0)        { up(); }
-     if(addr.equals("/1/down") && val == 1.0)        { down(); }
-    if(addr.equals("/1/play") && val == 1.0)        { playVideo(); }
-    if(addr.equals("/1/start") && val == 1.0)        { startPresentation(); }
-    if(addr.equals("/2/scrub"))        { scrubVideo(val); }
-
-   
-    
-}
 
 
 
