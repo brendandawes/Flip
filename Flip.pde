@@ -40,7 +40,7 @@ float roty = PI/4;
 float sceneZ = -3000;
 float sceneX = 0;
 float sceneY = 0;
-float slideYRot = 0;
+
 
 float textBaselineAdjust = 0;
 
@@ -241,7 +241,7 @@ void drawTitle() {
   rotateX(radians(15));
   drawTextBlocks(lines,0,0,color(100),255);
   popMatrix();
-  
+
 }
 
 void drawBackground(float x, float y,int slideNumber) {
