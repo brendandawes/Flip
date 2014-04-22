@@ -75,3 +75,8 @@ The video poster image creation is not ideal and needs to be automated in some w
 Think it could also benefit from some kind of multiple text ability for building text points on a slide.
 
 Multiple screen support with presenter notes would be great.
+
+Contribute
+----------
+
+Fork this repo, make it better and do a pull request. Would love to see people improve on it.
