@@ -600,7 +600,7 @@ private class FolderFilter implements java.io.FileFilter {
         
         String name = f.getName();
 
-        if (name.equals(APP_NAME)) {
+        if (name.equals(APP_NAME) || name.indexOf("_",0) > -1) {
           return false;
         } else {
           return true;
