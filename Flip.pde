@@ -186,9 +186,9 @@ void showLayout() {
     
     Slide slide = (Slide) slides.get(i); 
     float[] coords = getXY(i);
-    x = coords[0];
-    y = coords[1];
-    z = 0;
+    x = 0;
+    y = 0;
+    z = -coords[2];
    
     pushMatrix();
       if (isIntroMode) {
@@ -206,9 +206,10 @@ void showLayout() {
 
 float[] getXY(int i) {
 
-  float[] coords = new float[2];
+  float[] coords = new float[3];
   coords[0] = floor((i*xStep)%totalWidth);
   coords[1] = floor((i*xStep)/totalWidth)*yStep;
+  coords[2] = floor(i*700);
   return coords;
 
 }
@@ -518,8 +519,9 @@ void nextSlide() {
       
       currentSlide  = (currentSlide+1) % slides.size();
       float[] coords = getXY(currentSlide);
-      Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2),Ani.QUINT_OUT);
-      Ani.to(this, 1.0, "sceneY", (height/2)-(coords[1]/2),Ani.QUINT_IN);
+      Ani.to(this, 1.5, "sceneX", (width/2),Ani.QUINT_OUT);
+      Ani.to(this, 1.0, "sceneY", (height/2),Ani.QUINT_IN);
+      Ani.to(this, 1.0, "sceneZ", coords[2],Ani.QUINT_IN);
 }
 
 void prevSlide() {
