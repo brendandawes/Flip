@@ -595,6 +595,12 @@ void toggleZoom() {
   }
 }
 
+void saveSlide() {
+
+  saveFrame("flip-####.png");
+
+}
+
 private class FolderFilter implements java.io.FileFilter {
     public boolean accept(File f) {
         

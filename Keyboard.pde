@@ -60,5 +60,9 @@ if (key == 'r') {
 
   initApp();
 }
+
+if (key == 's') {
+  saveSlide();
+}
   
 }
