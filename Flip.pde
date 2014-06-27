@@ -41,11 +41,9 @@ float sceneZ = -3000;
 float sceneX = 0;
 float sceneY = 0;
 
-
 float textBaselineAdjust = 0;
 
 int currentSlide = 0;
-
 
 AniSequence seq;
 
@@ -54,6 +52,14 @@ Boolean isEditMode = false;
 Boolean isPlayingVideo = false;
 
 Boolean isIntroMode = true;
+
+Boolean isProjectorTest = false;
+
+Boolean mouseDragging = false;
+
+Boolean isTypeVisible  = true;
+
+Boolean isLoaded = false;
 
 PFont font;
 
@@ -68,12 +74,6 @@ float totalWidth;
 JSONObject settings;
 
 Movie movie;
-
-Boolean mouseDragging = false;
-
-Boolean isTypeVisible  = true;
-
-Boolean isLoaded = false;
 
 
 
@@ -169,6 +169,11 @@ void draw() {
   if (isEditMode) {
     drawTitle();
   }
+  if (isProjectorTest) {
+
+    drawProjectorTest();
+
+  }
  
 }
 
@@ -242,6 +247,22 @@ void drawTitle() {
   drawTextBlocks(lines,0,0,color(100),255);
   popMatrix();
 
+}
+
+void drawProjectorTest() {
+  float circleDiameter = 100;
+  float circleRadius = circleDiameter/2;
+  noLights();
+  smooth();
+  noStroke();
+  fill(255,0,0);
+  ellipse(circleRadius, circleRadius, circleDiameter, circleDiameter);
+  fill(0,255,0);
+  ellipse(width-circleRadius, circleRadius, circleDiameter, circleDiameter);
+  fill(0,0,255);
+  ellipse(width-circleRadius, height-circleRadius, circleDiameter, circleDiameter);
+  fill(0,0,0);
+  ellipse(circleRadius, height-circleRadius, circleDiameter, circleDiameter);
 }
 
 void drawBackground(float x, float y,int slideNumber) {

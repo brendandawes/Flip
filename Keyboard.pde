@@ -64,5 +64,9 @@ if (key == 'r') {
 if (key == 's') {
   saveSlide();
 }
+
+if (key == 't') {
+  isProjectorTest = !isProjectorTest;
+}
   
 }
