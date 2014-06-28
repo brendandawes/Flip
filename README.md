@@ -9,16 +9,18 @@ Flip is a very simple presentation tool. I built it for myself after having enou
 
 Flip is not for everyone. There's no presenter's notes. There's no multiscreen support. There's no chart making or anything like that. It's also not meant for lots of text. If you like those things in a presentation then continue using Keynote et al. Flip is not for you. What it does do however is remove the need for laying things out such as text, images, video etc, plus it doesn't store your stuff in any kind of proprietary format - your files all live outside of Flip.
 
+Flip also automatically resizes to whatever the screen / projector resolution is. Many venues now have different projector sizes which means normally you need to know before making your presentation the format of the projector. Not a problem with Flip.
+
 It's also very much a work-in-progress; far from perfect but hopefully it's something to build on.
 
 ![Flip](screenshot3.jpg?raw=true "Flip screenshot")
+
+I've used Flip in presentations at various conferences and it's worked perfectly – even had one AV guy say it was the best presentation software he'd ever seen!
 
 How it works
 ------------
 
 Flip is a viewer rather than an editor, meaning that there is no editing or slide construction within Flip itself. All slides are constructed as folders in the same directory as the exported Flip application. Each folder may contain a text file, a video file or multiple images.
-
-Tip: you can quickly put an outline for a presentation together just by making a series of folders. Flip will use the name of the folder as draft text for the slide. 
 
 Settings.json
 -------------
@@ -64,6 +66,13 @@ Video
 
 Files with the extension mov, m4v, mpeg and mp4 are supported. To show video correctly you must have an image with the dimensions you wish to show the video at - anything larger than the screen will be scaled down to fit. When you press the SPACEBAR the video will play. Press SPACEBAR again to stop. When the video is playing you can drag with the mouse left or right to jump to a certain point in the video. As with images, any text over the video will fade away when playing.
 
+Tips
+----
+
+You can quickly put an outline for a presentation together just by making a series of empty folders. Flip will use the name of the folder as draft text for the slide.
+
+Putting an underscore in front of the folder name will hide that folder from the presentation. This means you can _hide_ rather than _delete_ slides, in case you want to use them later.
+
 Touch OSC
 ---------
 
@@ -73,8 +82,6 @@ More info about Touch OSC at http://hexler.net/software/touchosc
 
 Known Issues & Wish List
 ------------------------
-
-On my Macbook Air it's a little slow whilst my Desktop machine it runs really well.
 
 The video poster image creation is not ideal and needs to be automated in some way.
 
