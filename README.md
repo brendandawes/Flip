@@ -11,6 +11,8 @@ Flip is not for everyone. There's no presenter's notes. There's no multiscreen s
 
 It's also very much a work-in-progress; far from perfect but hopefully it's something to build on.
 
+![Flip](screenshot3.jpg?raw=true "Flip screenshot")
+
 How it works
 ------------
 
