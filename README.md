@@ -22,6 +22,8 @@ How it works
 
 Flip is a viewer rather than an editor, meaning that there is no editing or slide construction within Flip itself. All slides are constructed as folders in the same directory as the exported Flip application. Each folder may contain a text file, a video file or multiple images.
 
+The code in this repo is for Processing. To use Flip simply export an application by choosing File > Export Application and choose the fullscreen option. This will export an application for your operating system. Simply put the exported app in the folder containing your 'slides', add the settings.json file and you're good to go.
+
 Settings.json
 -------------
 
