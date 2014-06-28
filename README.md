@@ -1,5 +1,5 @@
 Flip
-----
+====
 
 ![Flip](screenshot.jpg?raw=true "Flip screenshot")
 
@@ -18,7 +18,7 @@ It's also very much a work-in-progress; far from perfect but hopefully it's some
 I've used Flip in presentations at various conferences and it's worked perfectly – even had one AV guy say it was the best presentation software he'd ever seen!
 
 How it works
-------------
+============
 
 Flip is a viewer rather than an editor, meaning that there is no editing or slide construction within Flip itself. All slides are constructed as folders in the same directory as the exported Flip application. Each folder may contain a text file, a video file or multiple images.
 
@@ -47,7 +47,7 @@ SHIFT will fade any text on screen.
 Press "r" to reload the slides.
 
 Slides
-------
+======
 
 Flip comes with example folders (slides) to show how you can display text, images or video.
 
@@ -69,7 +69,7 @@ Video
 Files with the extension mov, m4v, mpeg and mp4 are supported. To show video correctly you must have an image with the dimensions you wish to show the video at - anything larger than the screen will be scaled down to fit. When you press the SPACEBAR the video will play. Press SPACEBAR again to stop. When the video is playing you can drag with the mouse left or right to jump to a certain point in the video. As with images, any text over the video will fade away when playing. The background will also change to black when the video plays.
 
 Tips
-----
+====
 
 You can quickly put an outline for a presentation together just by making a series of empty folders. Flip will use the name of the folder as draft text for the slide.
 
@@ -85,7 +85,7 @@ Flip comes with support for Touch OSC so you can use an iPhone to control the pr
 More info about Touch OSC at http://hexler.net/software/touchosc
 
 Known Issues & Wish List
-------------------------
+========================
 
 The video poster image creation is not ideal and needs to be automated in some way.
 
@@ -94,6 +94,6 @@ Think it could also benefit from some kind of multiple text ability for building
 Multiple screen support with presenter notes would be great.
 
 Contribute
-----------
+==========
 
 Fork this repo, make it better and do a pull request. Would love to see people improve on it.
