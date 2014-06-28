@@ -5,6 +5,8 @@ Flip
 
 Flip is a very simple presentation tool. I built it for myself after having enough of bloated software such as Keynote or Powerpoint, not to mention presentations that became corrupted. Keynote used to be great, then they had a meeting and ruined it. All I needed was a piece of software that would show slides containing images, video and text. 
 
+![Flip](screenshot2.jpg?raw=true "Flip screenshot")
+
 Flip is not for everyone. There's no presenter's notes. There's no multiscreen support. There's no chart making or anything like that. It's also not meant for lots of text. If you like those things in a presentation then continue using Keynote et al. Flip is not for you. What it does do however is remove the need for laying things out such as text, images, video etc, plus it doesn't store your stuff in any kind of proprietary format - your files all live outside of Flip.
 
 It's also very much a work-in-progress; far from perfect but hopefully it's something to build on.
