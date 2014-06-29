@@ -17,6 +17,8 @@ import netP5.*;
 
 final String APP_NAME = "Flip.app";
 
+final int ZDEPTH = 3000;
+
 int numberColumns = 2;
 
 color backgroundColor = #eeeeee;
@@ -213,7 +215,7 @@ float[] getXYZ(int i) {
   float[] coords = new float[3];
   coords[0] = floor((i*xStep)%totalWidth);
   coords[1] = floor((i*xStep)/totalWidth)*yStep;
-  coords[2] = 0;
+  coords[2] = -i*ZDEPTH;
   return coords;
 
 }
@@ -540,9 +542,14 @@ void nextSlide() {
       resetImages();
       
       currentSlide  = (currentSlide+1) % slides.size();
-      float[] coords = getXYZ(currentSlide);
-      Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2),Ani.QUINT_OUT);
-      Ani.to(this, 1.0, "sceneY", (height/2)-(coords[1]/2),Ani.QUINT_IN);
+      Slide slide = (Slide) slides.get(currentSlide);
+      
+      Ani.to(this, 1.5, "sceneX", (width/2)-(slide.x/2),Ani.QUINT_OUT);
+      Ani.to(this, 1.0, "sceneY", (height/2)-(slide.y/2),Ani.QUINT_IN);
+      if (!isEditMode) {
+      Ani.to(this, 0.3, "sceneZ", 0,Ani.QUINT_IN);
+      Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUINT_IN);
+    }
 }
 
 void prevSlide() {
@@ -550,9 +557,14 @@ void prevSlide() {
   resetImages();
   resetVideo();
   currentSlide  = max(0,(currentSlide-1) % slides.size());
+  Slide slide = (Slide) slides.get(currentSlide);
   float[] coords = getXYZ(currentSlide);
   Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2),Ani.QUINT_OUT);
   Ani.to(this, 1.3, "sceneY", (height/2)-(coords[1]/2),Ani.QUINT_IN);
+  if (!isEditMode) {
+    Ani.to(this, 0.3, "sceneZ", 0,Ani.QUINT_IN);
+    Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUINT_IN);
+  }
 
 }
 
@@ -611,9 +623,9 @@ void toggleZoom() {
   } else {
     Ani.to(this, 1.5, "rotx", 0);
     Ani.to(this, 1.5, "roty", 0);
-    float[] coords = getXYZ(currentSlide);
-    Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2));
-    Ani.to(this, 1.5, "sceneZ", 0,Ani.SINE_OUT);
+    Slide slide = (Slide) slides.get(currentSlide);
+    Ani.to(this, 1.5, "sceneX", (width/2)-(slide.x/2));
+    Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUINT_IN);
     isIntroMode = false;
   }
 }
@@ -673,6 +685,12 @@ void mouseReleased() {
     movie.play();
   }
    
+}
+
+void testMe() {
+
+  Slide slide = (Slide) slides.get(currentSlide);
+  Ani.to(slide, 1.5, "z", -2000);
 }
 
 

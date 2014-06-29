@@ -65,6 +65,10 @@ if (key == 's') {
   saveSlide();
 }
 
+if (key == '`') {
+  testMe();
+}
+
 if (key == 't') {
   isProjectorTest = !isProjectorTest;
 }
