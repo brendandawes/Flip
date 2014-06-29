@@ -11,9 +11,11 @@ class Slide{
   float imageHeight;
   ArrayList images;
   int currentImage = 0;
+
+  float x,y,z;
  
   
-  Slide(File file, ArrayList images, File videoFile, String draftText, int index) {
+  Slide(File file, ArrayList images, File videoFile, String draftText, int index,float x, float y, float z) {
     
     this.file = file;
     this.images = images;
@@ -45,6 +47,10 @@ class Slide{
     this.lines[0] = draftText;
     
   }
+
+  this.x = x;
+  this.y = y;
+  this.z = z;
     
     
   }

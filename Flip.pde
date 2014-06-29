@@ -190,10 +190,9 @@ void showLayout() {
   for (int i=start; i < end; i++) {
     
     Slide slide = (Slide) slides.get(i); 
-    float[] coords = getXY(i);
-    x = coords[0];
-    y = coords[1];
-    z = 0;
+    x = slide.x;
+    y = slide.y;
+    z = slide.z;
    
     pushMatrix();
       if (isIntroMode) {
@@ -209,11 +208,12 @@ void showLayout() {
 }
 
 
-float[] getXY(int i) {
+float[] getXYZ(int i) {
 
-  float[] coords = new float[2];
+  float[] coords = new float[3];
   coords[0] = floor((i*xStep)%totalWidth);
   coords[1] = floor((i*xStep)/totalWidth)*yStep;
+  coords[2] = 0;
   return coords;
 
 }
@@ -509,8 +509,10 @@ void getSlides() {
       }
     
     String folderName = slideFolder.getName();
+
+    float[] coords = getXYZ(j);
       
-    Slide slide = new Slide(textFile, images,videoFile,folderName,j);
+    Slide slide = new Slide(textFile, images,videoFile,folderName,j,coords[0],coords[1],coords[2]);
 
     slides.add(slide);
   
@@ -538,7 +540,7 @@ void nextSlide() {
       resetImages();
       
       currentSlide  = (currentSlide+1) % slides.size();
-      float[] coords = getXY(currentSlide);
+      float[] coords = getXYZ(currentSlide);
       Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2),Ani.QUINT_OUT);
       Ani.to(this, 1.0, "sceneY", (height/2)-(coords[1]/2),Ani.QUINT_IN);
 }
@@ -548,7 +550,7 @@ void prevSlide() {
   resetImages();
   resetVideo();
   currentSlide  = max(0,(currentSlide-1) % slides.size());
-  float[] coords = getXY(currentSlide);
+  float[] coords = getXYZ(currentSlide);
   Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2),Ani.QUINT_OUT);
   Ani.to(this, 1.3, "sceneY", (height/2)-(coords[1]/2),Ani.QUINT_IN);
 
@@ -584,7 +586,7 @@ void startPresentation() {
   isEditMode = false;
   isIntroMode = false;
   currentSlide  = 0;
-  float[] coords = getXY(currentSlide);
+  float[] coords = getXYZ(currentSlide);
   Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2));
   Ani.to(this, 1.5, "sceneY", (height/2)-(coords[1]/2));
   Ani.to(this, 1.5, "rotx", 0);
@@ -609,7 +611,7 @@ void toggleZoom() {
   } else {
     Ani.to(this, 1.5, "rotx", 0);
     Ani.to(this, 1.5, "roty", 0);
-    float[] coords = getXY(currentSlide);
+    float[] coords = getXYZ(currentSlide);
     Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2));
     Ani.to(this, 1.5, "sceneZ", 0,Ani.SINE_OUT);
     isIntroMode = false;
