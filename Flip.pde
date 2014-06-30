@@ -547,8 +547,7 @@ void nextSlide() {
       Ani.to(this, 1.5, "sceneX", (width/2)-(slide.x/2),Ani.QUINT_OUT);
       Ani.to(this, 1.0, "sceneY", (height/2)-(slide.y/2),Ani.QUINT_IN);
       if (!isEditMode) {
-        Ani.to(this, 0.3, "sceneZ", 0,Ani.QUAD_IN_OUT);
-        Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUAD_IN_OUT);
+        Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.BACK_IN);
     }
 }
 
@@ -562,8 +561,7 @@ void prevSlide() {
   Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2),Ani.QUINT_OUT);
   Ani.to(this, 1.3, "sceneY", (height/2)-(coords[1]/2),Ani.QUINT_IN);
   if (!isEditMode) {
-    Ani.to(this, 0.3, "sceneZ", 0,Ani.QUINT_IN);
-    Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUINT_IN);
+    Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.BACK_IN);
   }
 
 }
