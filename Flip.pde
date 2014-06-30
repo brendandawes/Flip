@@ -547,8 +547,8 @@ void nextSlide() {
       Ani.to(this, 1.5, "sceneX", (width/2)-(slide.x/2),Ani.QUINT_OUT);
       Ani.to(this, 1.0, "sceneY", (height/2)-(slide.y/2),Ani.QUINT_IN);
       if (!isEditMode) {
-      Ani.to(this, 0.3, "sceneZ", 0,Ani.QUINT_IN);
-      Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUINT_IN);
+        Ani.to(this, 0.3, "sceneZ", 0,Ani.QUAD_IN_OUT);
+        Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUAD_IN_OUT);
     }
 }
 
@@ -625,7 +625,7 @@ void toggleZoom() {
     Ani.to(this, 1.5, "roty", 0);
     Slide slide = (Slide) slides.get(currentSlide);
     Ani.to(this, 1.5, "sceneX", (width/2)-(slide.x/2));
-    Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUINT_IN);
+    Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUAD_IN_OUT);
     isIntroMode = false;
   }
 }
