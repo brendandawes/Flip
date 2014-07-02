@@ -3,5 +3,6 @@
    	"title": "Welcome to Flip\n\nPress 0 to start",
    	"typeface": "Variable",
    	"background": "f7941d",
-   	"slidebackground": "959595"
+   	"slidebackground": "959595",
+   	"zDepth":2000
 }

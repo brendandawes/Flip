@@ -17,7 +17,7 @@ import netP5.*;
 
 final String APP_NAME = "Flip.app";
 
-final int ZDEPTH = 3000;
+int zDepth = 3000;
 
 int numberColumns = 2;
 
@@ -146,6 +146,12 @@ void loadSettings() {
 
   String typeface = settings.getString("typeface");
 
+  try {
+    zDepth = settings.getInt("zDepth");
+  } catch (Exception e) {}
+
+  
+
   font = createFont(typeface, typeSize);
 
   textFont(font);
@@ -215,7 +221,7 @@ float[] getXYZ(int i) {
   float[] coords = new float[3];
   coords[0] = floor((i*xStep)%totalWidth);
   coords[1] = floor((i*xStep)/totalWidth)*yStep;
-  coords[2] = -i*ZDEPTH;
+  coords[2] = -i*zDepth;
   return coords;
 
 }
