@@ -13,6 +13,8 @@ class Slide{
   int currentImage = 0;
 
   float x,y,z;
+
+  float rotY;
  
   
   Slide(File file, ArrayList images, File videoFile, String draftText, int index,float x, float y, float z) {
@@ -51,7 +53,7 @@ class Slide{
   this.x = x;
   this.y = y;
   this.z = z;
-    
+  this.rotY = 0;
     
   }
 

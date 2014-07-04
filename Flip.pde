@@ -37,11 +37,13 @@ ArrayList slides;
 
 int typeSize = 120;
 
-float rotx = 0;
-float roty = PI/4;
+float rotX = 0;
+float rotY = PI/4;
 float sceneZ = -3000;
 float sceneX = 0;
 float sceneY = 0;
+
+int leftMargin = 300;
 
 float textBaselineAdjust = 0;
 
@@ -82,6 +84,9 @@ Movie movie;
 void setup() {
 
   size(displayWidth,displayHeight,OPENGL);
+  if (frame != null) {
+    frame.setResizable(true);
+  }
   Ani.init(this);
   oscP5 = new OscP5(this,8000);
   seq = new AniSequence(this);
@@ -150,6 +155,10 @@ void loadSettings() {
     zDepth = settings.getInt("zDepth");
   } catch (Exception e) {}
 
+  try {
+    leftMargin = settings.getInt("leftMargin");
+  } catch (Exception e) {}
+
   
 
   font = createFont(typeface, typeSize);
@@ -169,8 +178,8 @@ void draw() {
   pushMatrix();
     translate(sceneX, sceneY, sceneZ);
     scale(0.5);
-    rotateX(rotx);
-    rotateY(roty);
+    rotateX(rotX);
+    rotateY(rotY);
     showLayout();
   popMatrix();
 
@@ -207,9 +216,12 @@ void showLayout() {
         rotateY(radians(frameCount*i)/20);
       } 
       translate(x, y, z);
+      pushMatrix();
+      rotateY(radians(slide.rotY));
       drawBackground(0,0,i);
       drawImage(slide,0,0);
       drawText(slide,0,0);
+      popMatrix();
     popMatrix();
   }
 
@@ -230,8 +242,8 @@ float[] getXYZ(int i) {
 void showOverview() {
 
   isEditMode = true;
-  Ani.to(this, 2.0, "rotx", radians(-30));
-  Ani.to(this, 2.0, "roty", radians(25));
+  Ani.to(this, 2.0, "rotX", radians(-30));
+  Ani.to(this, 2.0, "rotY", radians(25));
   Ani.to(this, 5.0, "sceneZ", -2000);
 
 }
@@ -239,8 +251,8 @@ void showOverview() {
 void showIntro() {
 
   isEditMode = true;
-  Ani.to(this, 2.0, "rotx", radians(-45));
-  Ani.to(this, 5.0, "roty", radians(-45));
+  Ani.to(this, 2.0, "rotX", radians(-45));
+  Ani.to(this, 5.0, "rotY", radians(-45));
   Ani.to(this, 5.0, "sceneZ", -1500);
 
 }
@@ -417,7 +429,7 @@ void scrubVideo(float val) {
 void drawText(Slide slide, float x, float y) {
 
   if (slide.lines != null) {
-    x = x-width+max(100,(width/10.0));
+    x = x-width+leftMargin;
     String lines[] = slide.lines;
     float fillAlpha = slide.textAlpha;
     drawTextBlocks(lines,x,y,backgroundColor,fillAlpha);
@@ -536,8 +548,8 @@ void nextSlide() {
             if ((currentSlide+1) % numberColumns == 0) {
             seq = new AniSequence(this);
             seq.beginSequence();
-            seq.add(Ani.to(this, 1.0, "roty", radians(45),Ani.QUINT_OUT));
-            seq.add(Ani.to(this, 1.0, "roty", 0,Ani.QUINT_OUT,"onEnd:sequenceEnd"));
+            seq.add(Ani.to(this, 1.0, "rotY", radians(45),Ani.QUINT_OUT));
+            seq.add(Ani.to(this, 1.0, "rotY", 0,Ani.QUINT_OUT,"onEnd:sequenceEnd"));
             seq.endSequence();
             seq.start();
           }
@@ -605,9 +617,12 @@ void startPresentation() {
   float[] coords = getXYZ(currentSlide);
   Ani.to(this, 1.5, "sceneX", (width/2)-(coords[0]/2));
   Ani.to(this, 1.5, "sceneY", (height/2)-(coords[1]/2));
-  Ani.to(this, 1.5, "rotx", 0);
-  Ani.to(this, 1.5, "roty", 0);
+  Ani.to(this, 1.5, "rotX", 0);
+  Ani.to(this, 1.5, "rotY", 0);
   Ani.to(this, 1.5, "sceneZ", 0,Ani.SINE_OUT);
+  Slide slide = (Slide) slides.get(currentSlide);
+  Ani.to(slide, 1.5, "rotY", 0);
+
 
 }
 
@@ -625,13 +640,36 @@ void toggleZoom() {
   if (isEditMode) {
     showOverview();
   } else {
-    Ani.to(this, 1.5, "rotx", 0);
-    Ani.to(this, 1.5, "roty", 0);
+    Ani.to(this, 1.5, "rotX", 0);
+    Ani.to(this, 1.5, "rotY", 0);
     Slide slide = (Slide) slides.get(currentSlide);
     Ani.to(this, 1.5, "sceneX", (width/2)-(slide.x/2));
     Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.QUAD_IN_OUT);
     isIntroMode = false;
   }
+}
+
+void showAllSlides() {
+
+  isIntroMode = false;
+
+  showOverview();
+
+
+  for (int i=0; i < slides.size(); i++) {
+
+    Slide slide = (Slide) slides.get(i);
+   
+    Ani.to(slide, 1.5, "x", i*(width/(slides.size()/2)));
+    Ani.to(slide, 1.5, "y", 0);
+    Ani.to(slide, 1.5, "z", 0);
+    Ani.to(slide, 1.5, "rotY", -45);
+    Ani.to(this, 1.5, "rotY", 0);
+    Ani.to(this, 1.5, "rotX", radians(-45));
+    Ani.to(this, 1.5, "sceneX", -width/2);
+
+  }
+
 }
 
 void saveSlide() {
@@ -675,8 +713,8 @@ void mouseDragged() {
   mouseDragging = true;
   if (!isPlayingVideo) {
     float rate = 0.01;
-    rotx += (pmouseY-mouseY) * rate;
-    roty += (mouseX-pmouseX) * rate;
+    rotX += (pmouseY-mouseY) * rate;
+    rotY += (mouseX-pmouseX) * rate;
   } else {
     float val = map(mouseX,0,width,0,1.0);
     scrubVideo(val);
@@ -693,8 +731,7 @@ void mouseReleased() {
 
 void testMe() {
 
-  Slide slide = (Slide) slides.get(currentSlide);
-  Ani.to(slide, 1.5, "z", -2000);
+  showAllSlides();
 }
 
 
