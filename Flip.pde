@@ -248,14 +248,7 @@ void showOverview() {
 
 }
 
-void showIntro() {
 
-  isEditMode = true;
-  Ani.to(this, 2.0, "rotX", radians(-45));
-  Ani.to(this, 5.0, "rotY", radians(-45));
-  Ani.to(this, 5.0, "sceneZ", -1500);
-
-}
 
 void drawTitle() {
 
@@ -586,6 +579,8 @@ void prevSlide() {
 
 void up() {
 
+  resetVideo();
+
    Slide slide = (Slide) slides.get(currentSlide);
       if (slide.images.size() > 1) {
         
@@ -595,6 +590,8 @@ void up() {
 }
 
 void down() {
+
+  resetVideo();
 
    Slide slide = (Slide) slides.get(currentSlide);
       if (slide.images.size() > 1) {
