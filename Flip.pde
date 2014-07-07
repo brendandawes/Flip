@@ -660,9 +660,9 @@ void showAllSlides() {
     Ani.to(slide, 1.5, "x", i*(width/(slides.size()/2)));
     Ani.to(slide, 1.5, "y", 0);
     Ani.to(slide, 1.5, "z", 0);
-    Ani.to(slide, 1.5, "rotY", -45);
+   Ani.to(slide, 1.5, "rotY", -45);
     Ani.to(this, 1.5, "rotY", 0);
-    Ani.to(this, 1.5, "rotX", radians(-45));
+    Ani.to(this, 1.5, "rotX", radians(-22));
     Ani.to(this, 1.5, "sceneX", -width/2);
 
   }
