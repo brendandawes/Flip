@@ -11,6 +11,7 @@ class Slide{
   float imageHeight;
   ArrayList images;
   int currentImage = 0;
+  String caption;
 
   float x,y,z;
 
@@ -21,6 +22,7 @@ class Slide{
     
     this.file = file;
     this.images = images;
+    this.caption = null;
 
     if (this.file != null) {
     	this.lines = loadStrings(file.getPath());
@@ -33,6 +35,7 @@ class Slide{
       if (this.imageFile != null) {
         this.img = loadImage(this.imageFile.getPath());
         scaleImage();
+        loadCaptionForImage(this.imageFile);
 	     }
 
     }
@@ -95,8 +98,22 @@ class Slide{
     imageFile = (File) images.get(imageNumber);
     img = loadImage(imageFile.getPath());
     scaleImage();
+    loadCaptionForImage(imageFile);
 
+  }
 
+  void loadCaptionForImage(File file){
+
+    File captionFile = new File(file.getPath()+".caption");
+  
+    if (captionFile.exists()){
+      String lines[] = loadStrings(captionFile.getPath());
+      caption = lines[0];
+      println("caption: "+caption);
+    } else {
+      caption = null;
+    }
+    
   }
 
   

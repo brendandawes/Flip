@@ -221,6 +221,7 @@ void showLayout() {
       drawBackground(0,0,i);
       drawImage(slide,0,0);
       drawText(slide,0,0);
+      drawCaption(slide,0,0);
       popMatrix();
     popMatrix();
   }
@@ -416,10 +417,28 @@ void scrubVideo(float val) {
 
 
 
+void drawCaption(Slide slide, float x, float y) {
 
+  int captionHeight = 200;
+
+  if (slide.caption != null) {
+    textSize(100);
+    pushMatrix();
+    translate(x, height-(captionHeight/2), 50);
+    noStroke();
+    fill(0);
+    box(width*2,captionHeight,50);
+    fill(255);
+    text(slide.caption, 0-textWidth(slide.caption)/2, 0-(captionHeight/2),50);
+    popMatrix();
+  }
+
+}
 
 
 void drawText(Slide slide, float x, float y) {
+
+  textSize(typeSize);
 
   if (slide.lines != null) {
     x = x-width+leftMargin;
