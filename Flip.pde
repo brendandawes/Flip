@@ -14,6 +14,8 @@ import de.looksgood.ani.*;
 import processing.video.*;
 import oscP5.*;
 import netP5.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
 
 final String APP_NAME = "Flip.app";
 
@@ -79,6 +81,11 @@ JSONObject settings;
 
 Movie movie;
 
+PImage testcard;
+
+Minim minim;
+
+AudioPlayer song;
 
 
 void setup() {
@@ -88,6 +95,7 @@ void setup() {
     frame.setResizable(true);
   }
   Ani.init(this);
+  minim = new Minim(this);
   oscP5 = new OscP5(this,8000);
   seq = new AniSequence(this);
   smooth();
@@ -190,6 +198,11 @@ void draw() {
 
     drawProjectorTest();
 
+  } else {
+    if (song != null) {
+      song.pause();
+      song = null;
+    }
   }
  
 }
@@ -277,6 +290,26 @@ void drawProjectorTest() {
   ellipse(width-circleRadius, height-circleRadius, circleDiameter, circleDiameter);
   fill(0,0,0);
   ellipse(circleRadius, height-circleRadius, circleDiameter, circleDiameter);
+  if (testcard == null) {
+   testcard = loadImage(folder+"/testcard.png");
+  }
+  image(testcard, width/2-testcard.width/2, height/2-testcard.height/2, testcard.width, testcard.height);
+  playAudioTest();
+}
+
+void playAudioTest(){
+  if (song == null) {
+  try {
+    song = minim.loadFile(folder+"/audio.mp3", 512);
+  } catch (Exception e) {
+    song = null;
+  }
+
+  if (song != null) {
+    song.play();
+  }  
+}
+
 }
 
 void drawBackground(float x, float y,int slideNumber) {
@@ -419,7 +452,7 @@ void scrubVideo(float val) {
 
 void drawCaption(Slide slide, float x, float y) {
 
-  int captionHeight = 200;
+  int captionHeight = 250;
 
   if (slide.caption != null) {
     textSize(100);
@@ -429,7 +462,7 @@ void drawCaption(Slide slide, float x, float y) {
     fill(0);
     box(width*2,captionHeight,50);
     fill(255);
-    text(slide.caption, 0-textWidth(slide.caption)/2, 0-(captionHeight/2),50);
+    text(slide.caption, 0-textWidth(slide.caption)/2, 0-(captionHeight/1.8),50);
     popMatrix();
   }
 
