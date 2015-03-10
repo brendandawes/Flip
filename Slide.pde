@@ -85,7 +85,11 @@ class Slide{
 
    void prevImage() {
   if (images.size() > 1) {
-    currentImage = max(0,(currentImage-1) % images.size());
+    if (currentImage == 0) {
+      currentImage = images.size()-1;
+    } else {
+      currentImage = max(0,(currentImage-1) % images.size());
+    }
     loadImageForSlide(currentImage);
   }
   
