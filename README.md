@@ -66,7 +66,7 @@ Files with the extensions png and jpeg are supported. Images larger than the scr
 Video
 -----
 
-Files with the extension mov, m4v, mpeg and mp4 are supported. To show video correctly you must have an image with the dimensions you wish to show the video at - anything larger than the screen will be scaled down to fit. When you press the SPACEBAR the video will play. Press SPACEBAR again to stop. When the video is playing you can drag with the mouse left or right to jump to a certain point in the video. As with images, any text over the video will fade away when playing. The background will also change to black when the video plays.
+Files with the extension mov, m4v, mpeg, mpg and mp4 are supported. To show video correctly you must have an image with the dimensions you wish to show the video at - anything larger than the screen will be scaled down to fit. The corresponding video file must be named the same as your image but with the relevant extension. For example the actual movie file for movie.png would be movie.png.mov When you press the SPACEBAR the video will play. Press SPACEBAR again to stop. When the video is playing you can drag with the mouse left or right to jump to a certain point in the video. As with images, any text over the video will fade away when playing. The background will also change to black when the video plays.
 
 Tips
 ====

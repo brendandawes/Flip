@@ -138,6 +138,20 @@ class Slide{
        return true;
     }
 
+      videoFileToCheck = new File(file.getPath()+".m4v");
+
+      if (videoFileToCheck.exists()){
+        videoFile = videoFileToCheck;
+       return true;
+    }
+
+      videoFileToCheck = new File(file.getPath()+".mpeg");
+
+      if (videoFileToCheck.exists()){
+        videoFile = videoFileToCheck;
+       return true;
+    }
+
     videoFileToCheck = new File(file.getPath()+".mp4");
 
       if (videoFileToCheck.exists()){
