@@ -77,6 +77,8 @@ Putting an underscore in front of the folder name will hide that folder from the
 
 Press 't' (for test) and handy circles will appear at each corner in red, green, blue and black. This is handy to check slides aren't being cut off by the projector, the keystone alignment as well as testing colour balance.
 
+Easter egg - if you add an image called "testcard.png" and an audio file called "audio.mp3" into your slide folder the image will appear and the audio will play when pressing 't'. This is really handy for testing audio and image quality during set up especially when the AV guy says "can you play some audio".
+
 Touch OSC
 ---------
 
