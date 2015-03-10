@@ -20,7 +20,7 @@ I've used Flip in presentations at various conferences and it's worked perfectly
 How it works
 ============
 
-Flip is a viewer rather than an editor, meaning that there is no editing or slide construction within Flip itself. All slides are constructed as folders in the same directory as the exported Flip application. Each folder may contain a text file, a video file or multiple images.
+Flip is a viewer rather than an editor, meaning that there is no editing or slide construction within Flip itself. All slides are constructed as folders in the same directory as the exported Flip application. Each folder may contain a text file, video files or multiple images.
 
 The code in this repo is for Processing. To use Flip simply export an application by choosing File > Export Application and choose the fullscreen option. This will export an application for your operating system. Simply put the exported app in the folder containing your 'slides', add the settings.json file and you're good to go.
 
@@ -66,7 +66,7 @@ Files with the extensions png and jpeg are supported. Images larger than the scr
 Video
 -----
 
-Files with the extension mov, m4v, mpeg, mpg and mp4 are supported. To show video correctly you must have an image with the dimensions you wish to show the video at - anything larger than the screen will be scaled down to fit. The corresponding video file must be named the same as your image but with the relevant extension. For example the actual movie file for movie.png would be movie.png.mov When you press the SPACEBAR the video will play. Press SPACEBAR again to stop. When the video is playing you can drag with the mouse left or right to jump to a certain point in the video. As with images, any text over the video will fade away when playing. The background will also change to black when the video plays.
+Files with the extension mov, m4v, mpeg, mpg and mp4 are supported. To show video correctly you must have an image with the dimensions you wish to show the video at - anything larger than the screen will be scaled down to fit. The corresponding video file must be named the same as your image but with the relevant extension. For example the actual movie file for movie.png would be movie.png.mov When you press the SPACEBAR the video will play. Press SPACEBAR again to stop. When the video is playing you can drag with the mouse left or right to jump to a certain point in the video. Any text over the video will fade away when playing. The background will also change to black when the video plays.
 
 Tips
 ====
