@@ -393,7 +393,7 @@ void playVideo() {
   
   Slide slide = (Slide) slides.get(currentSlide);
  
-  if (slide.videoFile != null) {
+  if (slide.videoFileExistsForImage(slide.imageFile) == true) {
     if (!isPlayingVideo) {
     movie = null;
     movie = new Movie(this, slide.videoFile.getPath());

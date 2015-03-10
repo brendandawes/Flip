@@ -120,6 +120,35 @@ class Slide{
     
   }
 
+  boolean videoFileExistsForImage(File file){
+
+    File videoFileToCheck;
+
+    videoFileToCheck = new File(file.getPath()+".mov");
+
+    if (videoFileToCheck.exists()){
+        videoFile = videoFileToCheck;
+       return true;
+    }
+
+     videoFileToCheck = new File(file.getPath()+".mpg");
+
+      if (videoFileToCheck.exists()){
+        videoFile = videoFileToCheck;
+       return true;
+    }
+
+    videoFileToCheck = new File(file.getPath()+".mp4");
+
+      if (videoFileToCheck.exists()){
+        videoFile = videoFileToCheck;
+       return true;
+    }
+
+    return false;
+
+  }
+
   
 
  
