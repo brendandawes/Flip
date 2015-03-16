@@ -235,6 +235,7 @@ void showLayout() {
       drawImage(slide,0,0);
       drawText(slide,0,0);
       drawCaption(slide,0,0);
+      drawProgress(slide,0,0,i);
       popMatrix();
     popMatrix();
   }
@@ -275,6 +276,8 @@ void drawTitle() {
   popMatrix();
 
 }
+
+
 
 void drawProjectorTest() {
   float circleDiameter = 100;
@@ -480,6 +483,26 @@ void drawText(Slide slide, float x, float y) {
     drawTextBlocks(lines,x,y,backgroundColor,fillAlpha);
   }
 
+}
+
+void drawProgress(Slide slide, float x, float y, int i){
+if (!isPlayingVideo) {
+  float w = width*2;
+  float h = 10;
+  float indicatorWidth = w / slide.images.size();
+  float offset = indicatorWidth+(indicatorWidth*slide.currentImage);
+ // println("offset: "+w);
+  pushMatrix();
+  translate(-width,height-h);
+  if (slide.images.size() > 1){
+    //println("offset: "+offset);
+    fill(150);
+    rect(x, y, w, h);
+    fill(0);
+    rect(offset, y, 0, h);
+  }
+  popMatrix();
+}
 }
 
 void drawTextBlocks(String lines[],float x, float y,color fillColor,float fillAlpha) {
