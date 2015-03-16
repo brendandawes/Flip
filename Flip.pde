@@ -19,6 +19,10 @@ import ddf.minim.analysis.*;
 
 final String APP_NAME = "Flip.app";
 
+float startTime = 0;
+
+float currentTime;
+
 int zDepth = 3000;
 
 int numberColumns = 2;
@@ -140,6 +144,7 @@ void initApp() {
   currentSlide = 0;
   sceneX = width/2;
   sceneY = height/2;
+  startTime = 0;
   getSlides();
   showOverview();
 
@@ -182,8 +187,10 @@ void loadSettings() {
 void draw() {
   
   background(backgroundColor);
+
   pointLight(255, 255, 255, width/2, height/2, 2000);
   pushMatrix();
+    //drawTime();
     translate(sceneX, sceneY, sceneZ);
     scale(0.5);
     rotateX(rotX);
@@ -257,8 +264,8 @@ float[] getXYZ(int i) {
 void showOverview() {
 
   isEditMode = true;
-  Ani.to(this, 2.0, "rotX", radians(-30));
-  Ani.to(this, 2.0, "rotY", radians(25));
+  Ani.to(this, 2.0, "rotX", radians(15));
+  Ani.to(this, 2.0, "rotY", radians(-25));
   Ani.to(this, 5.0, "sceneZ", -2000);
 
 }
@@ -532,6 +539,14 @@ void drawTextBlocks(String lines[],float x, float y,color fillColor,float fillAl
 
 }
 
+void drawTime() {
+
+fill(255);
+int minutes = int((millis()-startTime)/1000)/60;
+text(str(minutes), 0, 0, 300, 200);
+
+}
+
 void TexturedCube(PImage img,float w, float h) {
   beginShape(QUADS);
     texture(img);
@@ -680,6 +695,7 @@ void down() {
 
 void startPresentation() {
 
+  startTime = millis();
   resetVideo();
   fadeInTextCurrentSlide();
   resetImages();
