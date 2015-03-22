@@ -98,12 +98,7 @@ AudioPlayer song;
 
 void setup() {
 
-  //println(Arduino.list());
-
  
-
-  //for (int i = 0; i <= 13; i++)
-    //arduino.pinMode(i, Arduino.INPUT);
 
   size(displayWidth,displayHeight,OPENGL);
   if (frame != null) {
@@ -227,7 +222,6 @@ void draw() {
   }
 
   if (arduino.digitalRead(2) == Arduino.HIGH) {
-
     nextSlide();
   }
  
