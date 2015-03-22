@@ -16,6 +16,10 @@ import oscP5.*;
 import netP5.*;
 import ddf.minim.*;
 import ddf.minim.analysis.*;
+import processing.serial.*;
+import cc.arduino.*;
+
+Arduino arduino;
 
 final String APP_NAME = "Flip.app";
 
@@ -94,10 +98,20 @@ AudioPlayer song;
 
 void setup() {
 
+  //println(Arduino.list());
+
+ 
+
+  //for (int i = 0; i <= 13; i++)
+    //arduino.pinMode(i, Arduino.INPUT);
+
   size(displayWidth,displayHeight,OPENGL);
   if (frame != null) {
     frame.setResizable(true);
   }
+
+  arduino = new Arduino(this, "/dev/cu.usbserial-A6030URD", 57600);
+  arduino.pinMode(2, Arduino.INPUT);
   Ani.init(this);
   minim = new Minim(this);
   oscP5 = new OscP5(this,8000);
@@ -210,6 +224,11 @@ void draw() {
       song.pause();
       song = null;
     }
+  }
+
+  if (arduino.digitalRead(2) == Arduino.HIGH) {
+
+    nextSlide();
   }
  
 }
