@@ -37,6 +37,8 @@ color slideBackgroundColor = #dddddd;
 
 String presentationTitle;
 
+String serialPortForArduino;
+
 OscP5 oscP5;
 
 java.io.File folder;
@@ -95,6 +97,10 @@ Minim minim;
 
 AudioPlayer song;
 
+float lastDebounceTime = 0;
+int debounceDelay = 500;
+Boolean isButtonPressed = false;
+
 
 void setup() {
 
@@ -105,8 +111,7 @@ void setup() {
     frame.setResizable(true);
   }
 
-  arduino = new Arduino(this, "/dev/cu.usbserial-A6030URD", 57600);
-  arduino.pinMode(2, Arduino.INPUT);
+  
   Ani.init(this);
   minim = new Minim(this);
   oscP5 = new OscP5(this,8000);
@@ -171,6 +176,8 @@ void loadSettings() {
 
   presentationTitle = settings.getString("title");
 
+  serialPortForArduino = settings.getString("serialPort");
+
   String typeface = settings.getString("typeface");
 
   try {
@@ -181,7 +188,9 @@ void loadSettings() {
     leftMargin = settings.getInt("leftMargin");
   } catch (Exception e) {}
 
-  
+  if (serialPortForArduino.length() > 0){
+    initArduino();
+  }
 
   font = createFont(typeface, typeSize);
 
@@ -191,6 +200,13 @@ void loadSettings() {
 
   textBaselineAdjust = typeSize - textAscent();
   
+}
+
+void initArduino() {
+
+  arduino = new Arduino(this, serialPortForArduino, 57600);
+  arduino.pinMode(2, Arduino.INPUT);
+
 }
 
 void draw() {
@@ -221,7 +237,8 @@ void draw() {
     }
   }
 
-  if (arduino.digitalRead(2) == Arduino.HIGH) {
+  if (arduino.digitalRead(2) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
+    lastDebounceTime = millis();
     nextSlide();
   }
  
@@ -638,6 +655,8 @@ void getSlides() {
 }
 
 void nextSlide() {
+
+ println("next slide");
 
    if (!isEditMode) {
           if (!seq.isPlaying()) {
