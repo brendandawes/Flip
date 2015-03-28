@@ -98,8 +98,20 @@ Minim minim;
 AudioPlayer song;
 
 float lastDebounceTime = 0;
+
 int debounceDelay = 500;
-Boolean isButtonPressed = false;
+
+static final int NEXT_SLIDE_BUTTON = 2;
+
+static final int PREV_SLIDE_BUTTON = 3;
+
+static final int DOWN_BUTTON = 4;
+
+static final int UP_BUTTON = 5;
+
+static final int PLAY_VIDEO_BUTTON = 6;
+
+static final int ZOOM_BUTTON = 7;
 
 
 void setup() {
@@ -243,18 +255,49 @@ void draw() {
       song = null;
     }
   }
+
+  readArduino();
+  
+ 
+}
+
+void readArduino() {
+
 try {
-  if (arduino.digitalRead(2) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
+  if (arduino.digitalRead(NEXT_SLIDE_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
     lastDebounceTime = millis();
     nextSlide();
+  }
+
+  if (arduino.digitalRead(PREV_SLIDE_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
+    lastDebounceTime = millis();
+    prevSlide();
+  }
+
+  if (arduino.digitalRead(UP_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
+    lastDebounceTime = millis();
+    up();
+  }
+
+  if (arduino.digitalRead(DOWN_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
+    lastDebounceTime = millis();
+    down();
+  }
+
+  if (arduino.digitalRead(PLAY_VIDEO_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
+    lastDebounceTime = millis();
+    playVideo();
+  }
+
+  if (arduino.digitalRead(ZOOM_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
+    lastDebounceTime = millis();
+    toggleZoom();
   }
   
 } catch (Exception e) {
   
 }
-  
-  
- 
+
 }
 
 void showLayout() {
