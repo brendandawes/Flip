@@ -204,8 +204,15 @@ void loadSettings() {
 
 void initArduino() {
 
+try {
+
   arduino = new Arduino(this, serialPortForArduino, 57600);
   arduino.pinMode(2, Arduino.INPUT);
+  
+} catch (Exception e) {
+  
+}
+  
 
 }
 
@@ -236,11 +243,17 @@ void draw() {
       song = null;
     }
   }
-
+try {
   if (arduino.digitalRead(2) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
     lastDebounceTime = millis();
     nextSlide();
   }
+  
+} catch (Exception e) {
+  
+}
+  
+  
  
 }
 
