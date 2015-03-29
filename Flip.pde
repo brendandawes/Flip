@@ -261,36 +261,40 @@ void draw() {
  
 }
 
+Boolean isArduinoHigh(int pin){
+
+ if (arduino.digitalRead(pin) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ){ 
+  lastDebounceTime = millis();
+  return true;
+ } else {
+  return false;
+ }
+}
+
 void readArduino() {
 
 try {
-  if (arduino.digitalRead(NEXT_SLIDE_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
-    lastDebounceTime = millis();
+  if (isArduinoHigh(NEXT_SLIDE_BUTTON) ) {
     nextSlide();
   }
 
-  if (arduino.digitalRead(PREV_SLIDE_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
-    lastDebounceTime = millis();
+  if (isArduinoHigh(PREV_SLIDE_BUTTON)) {
     prevSlide();
   }
 
-  if (arduino.digitalRead(UP_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
-    lastDebounceTime = millis();
+  if (isArduinoHigh(UP_BUTTON)) {
     up();
   }
 
-  if (arduino.digitalRead(DOWN_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
-    lastDebounceTime = millis();
+  if (isArduinoHigh(DOWN_BUTTON)) {
     down();
   }
 
-  if (arduino.digitalRead(PLAY_VIDEO_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
-    lastDebounceTime = millis();
+  if (isArduinoHigh(PLAY_VIDEO_BUTTON)) {
     playVideo();
   }
 
-  if (arduino.digitalRead(ZOOM_BUTTON) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ) {
-    lastDebounceTime = millis();
+  if (isArduinoHigh(ZOOM_BUTTON)) {
     toggleZoom();
   }
   
