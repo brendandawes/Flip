@@ -188,7 +188,7 @@ void loadSettings() {
 
   presentationTitle = settings.getString("title");
 
-  serialPortForArduino = settings.getString("serialPort");
+  
 
   String typeface = settings.getString("typeface");
 
@@ -199,6 +199,12 @@ void loadSettings() {
   try {
     leftMargin = settings.getInt("leftMargin");
   } catch (Exception e) {}
+
+  try {
+    serialPortForArduino = settings.getString("serialPort");
+  } catch (Exception e) {
+    
+  }
 
   if (serialPortForArduino.length() > 0){
     initArduino();
@@ -716,7 +722,6 @@ void getSlides() {
 
 void nextSlide() {
 
- println("next slide");
 
    if (!isEditMode) {
           if (!seq.isPlaying()) {
