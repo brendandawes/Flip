@@ -116,7 +116,6 @@ static final int ZOOM_BUTTON = 7;
 
 void setup() {
 
- 
 
   size(displayWidth,displayHeight,OPENGL);
   if (frame != null) {
