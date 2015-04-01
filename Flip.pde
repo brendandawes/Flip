@@ -18,6 +18,9 @@ import ddf.minim.*;
 import ddf.minim.analysis.*;
 import processing.serial.*;
 import cc.arduino.*;
+import java.awt.image.BufferedImage;
+import java.awt.geom.Point2D;
+import java.awt.Point;
 
 Arduino arduino;
 
@@ -120,6 +123,9 @@ void setup() {
   size(displayWidth,displayHeight,OPENGL);
   if (frame != null) {
     frame.setResizable(true);
+    frame.setCursor(frame.getToolkit().createCustomCursor(
+            new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
+            "null"));
   }
 
   
