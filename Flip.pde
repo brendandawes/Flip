@@ -99,7 +99,7 @@ AudioPlayer song;
 
 float lastDebounceTime = 0;
 
-int debounceDelay = 500;
+static final int DEBOUNCE_DELAY = 500;
 
 static final int NEXT_SLIDE_BUTTON = 2;
 
@@ -295,7 +295,7 @@ void draw() {
 
 Boolean isArduinoHigh(int pin){
 
- if (arduino.digitalRead(pin) == Arduino.HIGH && (millis() - lastDebounceTime) > debounceDelay ){ 
+ if (arduino.digitalRead(pin) == Arduino.HIGH && (millis() - lastDebounceTime) > DEBOUNCE_DELAY ){ 
   lastDebounceTime = millis();
   return true;
  } else {
