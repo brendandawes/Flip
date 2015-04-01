@@ -70,7 +70,7 @@ Boolean isEditMode = false;
 
 Boolean isPlayingVideo = false;
 
-Boolean isIntroMode = true;
+Boolean isIntroMode = false;
 
 Boolean isProjectorTest = false;
 
