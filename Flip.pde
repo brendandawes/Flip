@@ -132,7 +132,7 @@ void setup() {
   rectMode(LEFT);
   setBaseFolder();
   loadSettings();
-  thread("initApp");
+  
  
 
 }
@@ -177,15 +177,26 @@ void initApp() {
 
 void loadSettings() {
 
-  settings = loadJSONObject(folder+"/settings.json");
+  try {
+    settings = loadJSONObject(folder+"/settings.json");
+    parseSettings();
+   
+  } catch (Exception e) {
+    createSettings();
+  }
+  
+  
+}
 
-  numberColumns = settings.getInt("columns");
+void parseSettings() {
 
-  backgroundColor = unhex("FF"+settings.getString("background"));
+numberColumns = settings.getInt("columns");
 
-  slideBackgroundColor = unhex("FF"+settings.getString("slidebackground"));
+backgroundColor = unhex("FF"+settings.getString("background"));
 
-  presentationTitle = settings.getString("title");
+slideBackgroundColor = unhex("FF"+settings.getString("slidebackground"));
+
+presentationTitle = settings.getString("title");
 
   
 
@@ -201,13 +212,12 @@ void loadSettings() {
 
   try {
     serialPortForArduino = settings.getString("serialPort");
+    initArduino();
   } catch (Exception e) {
     
   }
 
-  if (serialPortForArduino.length() > 0){
-    initArduino();
-  }
+  
 
   font = createFont(typeface, typeSize);
 
@@ -216,7 +226,23 @@ void loadSettings() {
   textAlign(LEFT, TOP);
 
   textBaselineAdjust = typeSize - textAscent();
-  
+
+  thread("initApp");
+
+}
+
+void createSettings(){
+
+  JSONObject json = new JSONObject();
+  json.setInt("columns", 3);
+  json.setString("title", "Welcome to Flip\n\nPress 0 to start");
+  json.setString("typeface", "Helvetica");
+  json.setString("background","f7941d");
+  json.setString("slidebackground","959595");
+  json.setInt("zDepth", 2000);
+  saveJSONObject(json, folder+"/settings.json");
+  settings = json;
+  parseSettings();
 }
 
 void initArduino() {
@@ -235,6 +261,7 @@ try {
 
 void draw() {
   
+  if (settings != null) {
   background(backgroundColor);
 
   pointLight(255, 255, 255, width/2, height/2, 2000);
@@ -262,7 +289,7 @@ void draw() {
   }
 
   readArduino();
-  
+  } 
  
 }
 
