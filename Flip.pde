@@ -564,6 +564,8 @@ void resetImages() {
     slide.currentImage = 0;
     slide.loadImageForSlide(0);
     fadeInTextCurrentSlide();
+  } else {
+    fadeInTextCurrentSlide();
   }
 
 }
@@ -805,6 +807,8 @@ void up() {
         
         slide.prevImage();
 
+      } else {
+        fadeInTextCurrentSlide();
       }
 }
 
@@ -818,6 +822,9 @@ void down() {
         slide.nextImage();
         fadeOutTextCurrentSlide();
         
+      } else {
+
+        fadeOutTextCurrentSlide();
       }
 
 }
