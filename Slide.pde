@@ -109,11 +109,10 @@ class Slide{
   void loadCaptionForImage(File file){
 
     File captionFile = new File(file.getPath()+".caption");
-  
-    if (captionFile.exists()){
+    if (captionFile.isFile()){
+      println("exists");
       String lines[] = loadStrings(captionFile.getPath());
       caption = lines[0];
-      println("caption: "+caption);
     } else {
       caption = null;
     }

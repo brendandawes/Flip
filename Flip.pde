@@ -592,17 +592,16 @@ void scrubVideo(float val) {
 
 void drawCaption(Slide slide, float x, float y) {
 
-  int captionHeight = 250;
-
+  int captionHeight = 130;
   if (slide.caption != null) {
     textSize(100);
     pushMatrix();
-    translate(x, height-(captionHeight/2), 50);
+    translate(-width+(textWidth(slide.caption)+200)/2, height/2, 50);
     noStroke();
     fill(0);
-    box(width*2,captionHeight,50);
+    box(textWidth(slide.caption)+200,captionHeight,50);
     fill(255);
-    text(slide.caption, 0-textWidth(slide.caption)/2, 0-(captionHeight/1.8),50);
+    text(slide.caption, 100-textWidth(slide.caption)/2, 0-(captionHeight/1.8),50);
     popMatrix();
   }
 
