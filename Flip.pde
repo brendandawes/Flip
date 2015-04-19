@@ -24,6 +24,8 @@ import java.awt.Point;
 
 Arduino arduino;
 
+String[] serialPorts;
+
 final String APP_NAME = "Flip.app";
 
 float startTime = 0;
@@ -256,7 +258,15 @@ void initArduino() {
 try {
 
   arduino = new Arduino(this, serialPortForArduino, 57600);
-  arduino.pinMode(2, Arduino.INPUT);
+  if (arduino != null) {
+    saveStrings("serialports.txt", arduino.list());
+  }
+  arduino.pinMode(NEXT_SLIDE_BUTTON, Arduino.INPUT);
+  arduino.pinMode(PREV_SLIDE_BUTTON, Arduino.INPUT);
+  arduino.pinMode(PLAY_VIDEO_BUTTON, Arduino.INPUT);
+  arduino.pinMode(DOWN_BUTTON, Arduino.INPUT);
+  arduino.pinMode(UP_BUTTON, Arduino.INPUT);
+  arduino.pinMode(ZOOM_BUTTON, Arduino.INPUT);
   
 } catch (Exception e) {
   
