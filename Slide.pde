@@ -110,7 +110,6 @@ class Slide{
 
     File captionFile = new File(file.getPath()+".caption");
     if (captionFile.isFile()){
-      println("exists");
       String lines[] = loadStrings(captionFile.getPath());
       caption = lines[0];
     } else {
