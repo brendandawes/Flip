@@ -257,7 +257,9 @@ void initArduino() {
 
 try {
 
+//57600
   arduino = new Arduino(this, serialPortForArduino, 57600);
+  println(arduino);
   if (arduino != null) {
     saveStrings("serialports.txt", arduino.list());
   }

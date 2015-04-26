@@ -1,6 +1,6 @@
 /dev/cu.Bluetooth-Incoming-Port
 /dev/cu.Bluetooth-Modem
-/dev/cu.usbserial-A600eD9Z
+/dev/cu.usbserial-A400BYGG
 /dev/tty.Bluetooth-Incoming-Port
 /dev/tty.Bluetooth-Modem
-/dev/tty.usbserial-A600eD9Z
+/dev/tty.usbserial-A400BYGG
