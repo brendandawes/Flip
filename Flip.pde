@@ -786,7 +786,7 @@ void advancePresentation(){
     down();
   }
 
-  scriptCounter = (scriptCounter+1)%script.size();
+  
 
 }
 
@@ -817,6 +817,8 @@ void nextSlide() {
       if (!isEditMode) {
         Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.BACK_IN);
     }
+
+    scriptCounter = (scriptCounter+1)%script.size();
 }
 
 void prevSlide() {
@@ -854,14 +856,15 @@ void down() {
 
    Slide slide = (Slide) slides.get(currentSlide);
       if (slide.images.size() > 1) {
-
         slide.nextImage();
+        scriptCounter = (scriptCounter+1)%script.size();
         fadeOutTextCurrentSlide();
         
       } else {
 
         fadeOutTextCurrentSlide();
       }
+
 
 }
 

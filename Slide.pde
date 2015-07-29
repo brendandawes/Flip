@@ -86,6 +86,7 @@ class Slide{
   }
   
 
+
   }
 
    void prevImage() {
