@@ -769,15 +769,15 @@ void getSlides() {
     slides.add(slide);
   
   }
-
+  script.add("nextSlide"); // add an extra nextSlide command to loop round
   isLoaded = true;
   println("script: "+script);
 }
 
 void advancePresentation(){
 
+
   String command = script.get(scriptCounter);
-  println("command: "+command);
   if (command.equals("nextSlide") == true){
     nextSlide();
   }
@@ -786,7 +786,8 @@ void advancePresentation(){
     down();
   }
 
-  scriptCounter++;
+  scriptCounter = (scriptCounter+1)%script.size();
+
 }
 
 void nextSlide() {
