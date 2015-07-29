@@ -52,6 +52,8 @@ ArrayList images;
 
 ArrayList slides;
 
+ArrayList<String> script;
+
 int typeSize = 120;
 
 float rotX = 0;
@@ -700,6 +702,7 @@ void TexturedCube(PImage img,float w, float h) {
 void getSlides() {
   isLoaded = false;
   slides = new ArrayList();
+  script = new ArrayList<String>();
   java.io.File imageFile = null;
   java.io.File textFile = null;
   java.io.File videoFile = null;
@@ -711,13 +714,14 @@ void getSlides() {
   for (int c=0; c < filelist.length; c++){
     if (filelist[c].isDirectory()) {
       folders.add(filelist[c]);
+     
     }
   }
   for (int j=0; j < folders.size(); j++) {
     textFile = null;
     videoFile = null;
     imageFile = null;
-
+    script.add("nextSlide");
     ArrayList images = new ArrayList();
 
     java.io.File slideFolder = (java.io.File)folders.get(j);
@@ -728,6 +732,7 @@ void getSlides() {
   
     for (int i=0; i < children.length; i++) {
       
+      script.add("nextImage");
      String name = children[i].getName().toLowerCase();
 
         if (name.endsWith("txt") || name.endsWith("text")) {
@@ -761,6 +766,7 @@ void getSlides() {
   }
 
   isLoaded = true;
+  println("script: "+script);
 }
 
 void nextSlide() {
