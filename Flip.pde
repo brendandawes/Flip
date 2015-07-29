@@ -106,7 +106,7 @@ float lastDebounceTime = 0;
 
 static final int DEBOUNCE_DELAY = 500;
 
-static final int NEXT_SLIDE_BUTTON = 2;
+static final int NEXT_SLIDE_BUTTON = 6;
 
 static final int PREV_SLIDE_BUTTON = 3;
 
