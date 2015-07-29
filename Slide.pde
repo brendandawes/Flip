@@ -23,6 +23,11 @@ class Slide{
     this.file = file;
     this.images = images;
     this.caption = null;
+    if (images.size() > 1){
+      for (int i=1; i < images.size(); i++){
+        script.add("nextImage");
+      }
+   }
 
     if (this.file != null) {
     	this.lines = loadStrings(file.getPath());

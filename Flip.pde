@@ -723,7 +723,9 @@ void getSlides() {
     textFile = null;
     videoFile = null;
     imageFile = null;
+    if (j != 0){
     script.add("nextSlide");
+  }
     ArrayList images = new ArrayList();
 
     java.io.File slideFolder = (java.io.File)folders.get(j);
@@ -734,7 +736,7 @@ void getSlides() {
   
     for (int i=0; i < children.length; i++) {
       
-      script.add("nextImage");
+     
      String name = children[i].getName().toLowerCase();
 
         if (name.endsWith("txt") || name.endsWith("text")) {
@@ -752,6 +754,7 @@ void getSlides() {
         if (name.endsWith("jpeg") || name.endsWith("jpg") || name.endsWith("png")) {
 
           images.add(children[i]);
+
 
         } 
     
