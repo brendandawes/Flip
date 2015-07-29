@@ -68,6 +68,8 @@ float textBaselineAdjust = 0;
 
 int currentSlide = 0;
 
+int scriptCounter = 0;
+
 AniSequence seq;
 
 Boolean isEditMode = false;
@@ -767,6 +769,21 @@ void getSlides() {
 
   isLoaded = true;
   println("script: "+script);
+}
+
+void advancePresentation(){
+
+  String command = script.get(scriptCounter);
+  println("command: "+command);
+  if (command.equals("nextSlide") == true){
+    nextSlide();
+  }
+
+    if (command.equals("nextImage") == true){
+    down();
+  }
+
+  scriptCounter++;
 }
 
 void nextSlide() {

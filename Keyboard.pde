@@ -35,6 +35,10 @@ void keyReleased() {
 
   } 
 
+if (key == 'p') {
+  advancePresentation();
+   // Ani.to(this, 1.5, "roty", PI/4);
+ }
 
  if (key == 'f') {
   toggleZoom();
