@@ -1,5 +1,6 @@
 /dev/cu.Bluetooth-Incoming-Port
 /dev/cu.Bluetooth-Modem
+/dev/cu.LightBlue-Bean
 /dev/cu.usbserial-A600eD9Z
 /dev/tty.Bluetooth-Incoming-Port
 /dev/tty.Bluetooth-Modem
