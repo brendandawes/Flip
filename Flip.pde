@@ -708,10 +708,14 @@ void getSlides() {
   java.io.File imageFile = null;
   java.io.File textFile = null;
   java.io.File videoFile = null;
+
+  
   
   ArrayList folders = new ArrayList();
   java.io.FileFilter FolderFilter = new FolderFilter();
   File[] filelist = folder.listFiles(FolderFilter);
+
+  script.add("start");
 
   for (int c=0; c < filelist.length; c++){
     if (filelist[c].isDirectory()) {
@@ -769,7 +773,7 @@ void getSlides() {
     slides.add(slide);
   
   }
-  script.add("nextSlide"); // add an extra nextSlide command to loop round
+  script.add("end"); 
   isLoaded = true;
   println("script: "+script);
 }
@@ -778,6 +782,17 @@ void advancePresentation(){
 
 
   String command = script.get(scriptCounter);
+
+if (command.equals("start") == true){
+    startPresentation();
+    scriptCounter++;
+  }
+
+  if (command.equals("end") == true){
+    showOverview();
+    scriptCounter = 0;
+  }
+
   if (command.equals("nextSlide") == true){
     nextSlide();
   }
@@ -787,6 +802,25 @@ void advancePresentation(){
   }
 
   
+
+}
+
+void rewindPresentation(){
+
+  scriptCounter  = max(1,scriptCounter-1);
+  String command = script.get(scriptCounter);
+  if (command.equals("nextSlide") == true){
+     Slide slide = (Slide) slides.get((max(0,currentSlide-1)));
+     if (slide.images.size() > 0){
+      scriptCounter  = max(1,scriptCounter-(slide.images.size()-1));
+     }
+    prevSlide();
+  }
+
+    if (command.equals("nextImage") == true){
+    up();
+  }
+
 
 }
 
@@ -833,6 +867,7 @@ void prevSlide() {
   if (!isEditMode) {
     Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.BACK_IN);
   }
+  
 
 }
 
@@ -842,12 +877,14 @@ void up() {
 
    Slide slide = (Slide) slides.get(currentSlide);
       if (slide.images.size() > 1) {
-        
+        fadeOutTextCurrentSlide();
         slide.prevImage();
+
 
       } else {
         fadeInTextCurrentSlide();
       }
+
 }
 
 void down() {

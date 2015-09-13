@@ -40,6 +40,11 @@ if (key == 'p') {
    // Ani.to(this, 1.5, "roty", PI/4);
  }
 
+ if (key == 'o') {
+  rewindPresentation();
+   // Ani.to(this, 1.5, "roty", PI/4);
+ }
+
  if (key == 'f') {
   toggleZoom();
    // Ani.to(this, 1.5, "roty", PI/4);
