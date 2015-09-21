@@ -328,6 +328,7 @@ void readArduino() {
 try {
   if (isArduinoHigh(NEXT_SLIDE_BUTTON) ) {
     advancePresentation();
+    println("high");
   }
 
   if (isArduinoHigh(PREV_SLIDE_BUTTON)) {
