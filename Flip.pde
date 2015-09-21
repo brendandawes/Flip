@@ -110,15 +110,15 @@ float lastDebounceTime = 0;
 
 static final int DEBOUNCE_DELAY = 500;
 
-static final int NEXT_SLIDE_BUTTON = 4;
+static final int NEXT_SLIDE_BUTTON = 2;
 
-static final int PREV_SLIDE_BUTTON = 0;
+static final int PREV_SLIDE_BUTTON = 3;
 
 static final int DOWN_BUTTON = 0;
 
 static final int UP_BUTTON = 5;
 
-static final int PLAY_VIDEO_BUTTON = 3;
+static final int PLAY_VIDEO_BUTTON = 6;
 
 static final int ZOOM_BUTTON = 7;
 
@@ -332,7 +332,7 @@ try {
   }
 
   if (isArduinoHigh(PREV_SLIDE_BUTTON)) {
-    prevSlide();
+    rewindPresentation();
   }
 
   if (isArduinoHigh(UP_BUTTON)) {
