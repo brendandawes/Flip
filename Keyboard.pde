@@ -2,11 +2,11 @@ void keyReleased() {
  
   if (key == CODED) {
     if (keyCode == LEFT) {
-      prevSlide();
+      rewindPresentation();
     } 
 
     if (keyCode == RIGHT) {
-      nextSlide();
+      advancePresentation();
       //Ani.to(this, 1.5, "sceneY", (width/2)-(width*currentSlide));
     }
 
