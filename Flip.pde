@@ -102,6 +102,8 @@ Movie movie;
 
 PImage testcard;
 
+PImage playIcon;
+
 Minim minim;
 
 AudioPlayer song;
@@ -383,6 +385,7 @@ void showLayout() {
       rotateY(radians(slide.rotY));
       drawBackground(0,0,i);
       drawImage(slide,0,0);
+      drawPlayIcon();
       drawText(slide,0,0);
       drawCaption(slide,0,0);
       drawProgress(slide,0,0,i);
@@ -427,7 +430,20 @@ void drawTitle() {
 
 }
 
+void drawPlayIcon(){
 
+  Slide slide = (Slide) slides.get(currentSlide);
+ if (slide.imageFile != null){
+  if (slide.videoFileExistsForImage(slide.imageFile) == true && !isPlayingVideo) {
+    if (playIcon == null) {
+      playIcon = loadImage(folder+"/play.png");
+    }
+    
+    image(playIcon, -playIcon.width, -playIcon.height, playIcon.width*2, playIcon.height*2);
+  }
+}
+
+}
 
 void drawProjectorTest() {
   float circleDiameter = 100;
@@ -609,7 +625,7 @@ void drawCaption(Slide slide, float x, float y) {
 
   int captionHeight = 130;
   if (slide.caption != null) {
-    textSize(100);
+    textSize(75);
     pushMatrix();
     translate(-width+(textWidth(slide.caption)+200)/2, height/2, 50);
     noStroke();
