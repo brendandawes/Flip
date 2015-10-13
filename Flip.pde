@@ -110,19 +110,19 @@ AudioPlayer song;
 
 float lastDebounceTime = 0;
 
-static final int DEBOUNCE_DELAY = 500;
+ int DEBOUNCE_DELAY = 500;
 
-static final int NEXT_SLIDE_BUTTON = 2;
+int NEXT_SLIDE_BUTTON = 2;
 
-static final int PREV_SLIDE_BUTTON = 3;
+ int PREV_SLIDE_BUTTON = 3;
 
-static final int DOWN_BUTTON = 0;
+ int DOWN_BUTTON = 0;
 
-static final int UP_BUTTON = 5;
+ int UP_BUTTON = 5;
 
-static final int PLAY_VIDEO_BUTTON = 6;
+ int PLAY_VIDEO_BUTTON = 6;
 
-static final int ZOOM_BUTTON = 7;
+ int ZOOM_BUTTON = 7;
 
 
 void setup() {
@@ -224,12 +224,23 @@ presentationTitle = settings.getString("title");
     leftMargin = settings.getInt("leftMargin");
   } catch (Exception e) {}
 
+   try {
+    String remote = settings.getString("remote");
+    if (remote.equals("soft") == true){
+      
+      NEXT_SLIDE_BUTTON = 4;
+
+      PREV_SLIDE_BUTTON = 2;
+
+      PLAY_VIDEO_BUTTON = 3;
+
+    }
+  } catch (Exception e) {}
+
   try {
     serialPortForArduino = settings.getString("serialPort");
     initArduino();
-  } catch (Exception e) {
-    
-  }
+  } catch (Exception e) {}
 
   
 
