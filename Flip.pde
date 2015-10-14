@@ -10,6 +10,7 @@ http://www.looksgood.de/libraries/Ani/
 http://www.sojamo.de/libraries/oscP5/
 */
 
+import dawesometoolkit.*;
 import de.looksgood.ani.*;
 import processing.video.*;
 import oscP5.*;
@@ -25,6 +26,10 @@ import java.awt.Point;
 Arduino arduino;
 
 String[] serialPorts;
+
+ArrayList<PVector> vectors;
+
+DawesomeToolkit ds;
 
 final String APP_NAME = "Flip.app";
 
@@ -129,12 +134,16 @@ void setup() {
 
 
   size(displayWidth,displayHeight,OPENGL);
+
   if (frame != null) {
     frame.setResizable(true);
     frame.setCursor(frame.getToolkit().createCustomCursor(
             new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB), new Point(0, 0),
             "null"));
   }
+
+  ds = new DawesomeToolkit(this);
+ 
 
   
   Ani.init(this);
@@ -751,6 +760,9 @@ void getSlides() {
      
     }
   }
+
+  vectors = ds.fibonacciSphereLayout(folders.size(),3000);
+
   for (int j=0; j < folders.size(); j++) {
     textFile = null;
     videoFile = null;
@@ -795,8 +807,12 @@ void getSlides() {
     String folderName = slideFolder.getName();
 
     float[] coords = getXYZ(j);
+
+    PVector p = vectors.get(j);
+
+
       
-    Slide slide = new Slide(textFile, images,videoFile,folderName,j,coords[0],coords[1],coords[2]);
+    Slide slide = new Slide(textFile, images,videoFile,folderName,j,p.x,p.y,p.z);
 
     slides.add(slide);
   
