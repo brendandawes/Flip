@@ -312,6 +312,7 @@ void draw() {
   background(245);
 } else {
   background(245);
+
 }
 
   pointLight(255, 255, 255, width/2, height/2, 2000);
@@ -332,6 +333,7 @@ void draw() {
   if (isSummary){
 
     drawSummary();
+    drawThankyou();
   }
   if (isProjectorTest) {
 
@@ -484,6 +486,17 @@ void drawTitle() {
 
 }
 
+void drawThankyou() {
+
+  String lines[] = split("Thank you",'\n');
+  float xOffset = textWidth(lines[0]);
+  pushMatrix();
+  translate(0, 0, 100);
+  drawTextBlocks(lines,-xOffset/2, 0,color(0,0,0),255);
+  popMatrix();
+
+}
+
 void drawPlayIcon(){
 
   Slide slide = (Slide) slides.get(currentSlide);
@@ -504,6 +517,7 @@ void drawSummary(){
 
 
   translate(width/2,height/2);
+  pushMatrix();
   float xRot = radians(270 -  millis()*.02);
   float yRot = radians(270 -  millis()*.03);
   rotateX( xRot ); 
@@ -540,7 +554,7 @@ void drawSummary(){
     popMatrix();
   }
 
-
+popMatrix();
 
 }
 
@@ -596,7 +610,7 @@ void drawBackground(float x, float y,int slideNumber) {
   noFill();
   if (slideNumber == currentSlide) {
     strokeWeight(2);
-    stroke(255,255,0);
+    stroke(0);
   } else {
     strokeWeight(1);
     stroke(255);
