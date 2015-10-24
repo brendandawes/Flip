@@ -309,9 +309,9 @@ void draw() {
   
   if (settings != null) {
   if (!isSummary){
-  background(backgroundColor);
+  background(245);
 } else {
-  background(slideBackgroundColor);
+  background(245);
 }
 
   pointLight(255, 255, 255, width/2, height/2, 2000);
@@ -526,12 +526,17 @@ void drawSummary(){
               translate(xOffset, yOffset, 0);
               rotateY(radians(90));
               image(img, -xOffset, -yOffset, img.width/8, img.height/8);
+              fill(0);
+              pushMatrix();
+              translate(0,0,-((displayHeight/2.5)/2)-0.5);
+              box(img.width/8,img.height/8,displayHeight/2.5);
+              popMatrix();
             popMatrix();
           popMatrix();
     
       //image(img,0,0,img.width/6,img.height/6);
       i++;
-     // box(boxSize,boxSize,boxSize);
+      
     popMatrix();
   }
 
