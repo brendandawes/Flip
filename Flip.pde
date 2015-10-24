@@ -54,6 +54,8 @@ ArrayList slides;
 
 ArrayList<String> script;
 
+ArrayList<PImage> screens;
+
 int typeSize = 120;
 
 float rotX = 0;
@@ -85,6 +87,8 @@ Boolean mouseDragging = false;
 Boolean isTypeVisible  = true;
 
 Boolean isLoaded = false;
+
+Boolean isSummary = false;
 
 PFont font;
 
@@ -184,6 +188,7 @@ void initApp() {
   sceneX = width/2;
   sceneY = height/2;
   startTime = 0;
+  screens = new ArrayList<PImage>();
   getSlides();
   showOverview();
 
@@ -310,6 +315,10 @@ void draw() {
   if (isEditMode) {
     drawTitle();
   }
+  if (isSummary){
+
+    drawSummary();
+  }
   if (isProjectorTest) {
 
     drawProjectorTest();
@@ -427,7 +436,13 @@ void showOverview() {
 
 }
 
+void addScreenGrab(){
 
+  PImage screenGrab = get();
+
+  screens.add(screenGrab);
+
+}
 
 void drawTitle() {
 
@@ -453,6 +468,15 @@ void drawPlayIcon(){
     image(playIcon, -playIcon.width, -playIcon.height, playIcon.width*2, playIcon.height*2);
   }
 }
+
+}
+
+void drawSummary(){
+
+  for (int i=0; i < screens.size(); i++){
+    PImage p = screens.get(i);
+    image(p,0,i*20,p.width/6,p.height/6);
+  }
 
 }
 
@@ -817,6 +841,7 @@ if (command.equals("start") == true){
   }
 
   if (command.equals("end") == true){
+    isSummary = true;
     showOverview();
     scriptCounter = 0;
   }
@@ -877,7 +902,7 @@ void nextSlide() {
       Ani.to(this, 1.5, "sceneX", (width/2)-(slide.x/2),Ani.QUINT_OUT);
       Ani.to(this, 1.0, "sceneY", (height/2)-(slide.y/2),Ani.QUINT_IN);
       if (!isEditMode) {
-        Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.BACK_IN);
+        Ani.to(this, 1.5, "sceneZ", (slide.z*-1)/2,Ani.BACK_IN,"onEnd:movementEnd");
     }
 
     scriptCounter = (scriptCounter+1)%script.size();
@@ -1033,6 +1058,11 @@ private class AssetsFileFilter implements java.io.FileFilter {
 void sequenceEnd() {
 
   seq.pause();
+  
+}
+
+void movementEnd() {
+  addScreenGrab();
 }
 
 
