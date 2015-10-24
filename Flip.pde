@@ -1121,7 +1121,7 @@ void sequenceEnd() {
 }
 
 void movementEnd() {
-  nextIntervalToTakeScreenGrab = millis()+2000;
+  nextIntervalToTakeScreenGrab = millis()+1000;
 }
 
 
