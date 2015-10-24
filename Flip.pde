@@ -304,9 +304,14 @@ try {
 void draw() {
   
   if (settings != null) {
+  if (!isSummary){
   background(backgroundColor);
+} else {
+  background(slideBackgroundColor);
+}
 
   pointLight(255, 255, 255, width/2, height/2, 2000);
+  if (!isSummary){
   pushMatrix();
     //drawTime();
     translate(sceneX, sceneY, sceneZ);
@@ -315,6 +320,7 @@ void draw() {
     rotateY(rotY);
     showLayout();
   popMatrix();
+}
 
   if (isEditMode) {
     drawTitle();
@@ -479,7 +485,7 @@ void drawSummary(){
 
   ArrayList<PVector> vectors;
 
-  vectors = ds.fibonacciSphereLayout(screens.size(),150);
+  vectors = ds.fibonacciSphereLayout(screens.size(),displayHeight/2.5);
 
   translate(width/2,height/2);
   float xRot = radians(270 -  millis()*.02);
@@ -489,14 +495,25 @@ void drawSummary(){
   int i = 0;
   for (PVector p : vectors) {
     pushMatrix();
-      float scaler = sin(frameCount/100.0)*1.5;
-      p = PVector.mult(p,scaler);
+      //float scaler = sin(frameCount/100.0)*1.5;
+      //p = PVector.mult(p,scaler);
       translate(p.x, p.y, p.z);
       PVector polar = ds.cartesianToPolar(p);
       rotateY(polar.y);
       rotateZ(polar.z);
-      PImage img = screens.get(i);
-      image(img,0,0,img.width/6,img.height/6);
+        PImage img = screens.get(i);
+        pushMatrix();
+            float xOffset = (img.width/8)/2;
+            float yOffset = (img.height/8)/2;
+            translate(-xOffset, -yOffset, 0);
+            pushMatrix();
+              translate(xOffset, yOffset, 0);
+              rotateY(radians(90));
+              image(img, -xOffset, -yOffset, img.width/8, img.height/8);
+            popMatrix();
+          popMatrix();
+    
+      //image(img,0,0,img.width/6,img.height/6);
       i++;
      // box(boxSize,boxSize,boxSize);
     popMatrix();
@@ -985,7 +1002,7 @@ void down() {
 }
 
 void startPresentation() {
-
+  isSummary = false;
   startTime = millis();
   resetVideo();
   fadeInTextCurrentSlide();
