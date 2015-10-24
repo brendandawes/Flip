@@ -59,6 +59,8 @@ ArrayList<String> script;
 
 ArrayList<PImage> screens;
 
+ArrayList<PVector> summaryVectors;
+
 int typeSize = 120;
 
 float rotX = 0;
@@ -130,6 +132,8 @@ int NEXT_SLIDE_BUTTON = 2;
  int PLAY_VIDEO_BUTTON = 6;
 
  int ZOOM_BUTTON = 7;
+
+ int nextIntervalToTakeScreenGrab = 9999999;
 
 
 void setup() {
@@ -341,8 +345,18 @@ void draw() {
   }
 
   readArduino();
+  checkToTakeScreenGrab();
   } 
  
+}
+
+void checkToTakeScreenGrab(){
+
+  if (millis() >= nextIntervalToTakeScreenGrab) {
+    nextIntervalToTakeScreenGrab = millis()+9999999;
+    addScreenGrab();
+
+  }
 }
 
 Boolean isArduinoHigh(int pin){
@@ -448,9 +462,13 @@ void showOverview() {
 
 void addScreenGrab(){
 
+  println("adding screengrab for slide: "+scriptCounter);
+
   PImage screenGrab = get();
 
   screens.add(screenGrab);
+
+  summaryVectors = ds.fibonacciSphereLayout(screens.size(),displayHeight/2.5);
 
 }
 
@@ -483,9 +501,7 @@ void drawPlayIcon(){
 
 void drawSummary(){
 
-  ArrayList<PVector> vectors;
 
-  vectors = ds.fibonacciSphereLayout(screens.size(),displayHeight/2.5);
 
   translate(width/2,height/2);
   float xRot = radians(270 -  millis()*.02);
@@ -493,7 +509,7 @@ void drawSummary(){
   rotateX( xRot ); 
   rotateY( yRot );
   int i = 0;
-  for (PVector p : vectors) {
+  for (PVector p : summaryVectors) {
     pushMatrix();
       //float scaler = sin(frameCount/100.0)*1.5;
       //p = PVector.mult(p,scaler);
@@ -998,7 +1014,7 @@ void down() {
         fadeOutTextCurrentSlide();
       }
 
-      addScreenGrab();
+      movementEnd();
 }
 
 void startPresentation() {
@@ -1105,7 +1121,7 @@ void sequenceEnd() {
 }
 
 void movementEnd() {
-  addScreenGrab();
+  nextIntervalToTakeScreenGrab = millis()+2000;
 }
 
 
