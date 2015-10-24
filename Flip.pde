@@ -225,26 +225,17 @@ presentationTitle = settings.getString("title");
   } catch (Exception e) {}
 
    try {
-    String remote = settings.getString("remote");
-    if (remote.equals("soft") == true){
-      
-      NEXT_SLIDE_BUTTON = 4;
-
-      PREV_SLIDE_BUTTON = 2;
-
-      PLAY_VIDEO_BUTTON = 3;
-
-    }
-     if (remote.equals("v3") == true){
-      
-      NEXT_SLIDE_BUTTON = 4;
-
-      PREV_SLIDE_BUTTON = 999;
-
-      PLAY_VIDEO_BUTTON = 999;
-
-    }
+    NEXT_SLIDE_BUTTON = settings.getInt("nextButton");
   } catch (Exception e) {}
+
+    try {
+    PREV_SLIDE_BUTTON = settings.getInt("prevButton");
+  } catch (Exception e) {}
+
+    try {
+    PLAY_VIDEO_BUTTON = settings.getInt("playButton");
+  } catch (Exception e) {}
+
 
   try {
     serialPortForArduino = settings.getString("serialPort");
