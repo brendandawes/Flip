@@ -21,6 +21,9 @@ import cc.arduino.*;
 import java.awt.image.BufferedImage;
 import java.awt.geom.Point2D;
 import java.awt.Point;
+import dawesometoolkit.*;
+
+DawesomeToolkit ds;
 
 Arduino arduino;
 
@@ -133,6 +136,7 @@ void setup() {
 
 
   size(displayWidth,displayHeight,OPENGL);
+
   if (frame != null) {
     frame.setResizable(true);
     frame.setCursor(frame.getToolkit().createCustomCursor(
@@ -140,7 +144,7 @@ void setup() {
             "null"));
   }
 
-  
+  ds = new DawesomeToolkit(this);
   Ani.init(this);
   minim = new Minim(this);
   oscP5 = new OscP5(this,8000);
@@ -473,10 +477,32 @@ void drawPlayIcon(){
 
 void drawSummary(){
 
-  for (int i=0; i < screens.size(); i++){
-    PImage p = screens.get(i);
-    image(p,0,i*20,p.width/6,p.height/6);
+  ArrayList<PVector> vectors;
+
+  vectors = ds.fibonacciSphereLayout(screens.size(),150);
+
+  translate(width/2,height/2);
+  float xRot = radians(270 -  millis()*.02);
+  float yRot = radians(270 -  millis()*.03);
+  rotateX( xRot ); 
+  rotateY( yRot );
+  int i = 0;
+  for (PVector p : vectors) {
+    pushMatrix();
+      float scaler = sin(frameCount/100.0)*1.5;
+      p = PVector.mult(p,scaler);
+      translate(p.x, p.y, p.z);
+      PVector polar = ds.cartesianToPolar(p);
+      rotateY(polar.y);
+      rotateZ(polar.z);
+      PImage img = screens.get(i);
+      image(img,0,0,img.width/6,img.height/6);
+      i++;
+     // box(boxSize,boxSize,boxSize);
+    popMatrix();
   }
+
+
 
 }
 
@@ -972,7 +998,7 @@ void startPresentation() {
   Ani.to(this, 1.5, "sceneY", (height/2)-(coords[1]/2));
   Ani.to(this, 1.5, "rotX", 0);
   Ani.to(this, 1.5, "rotY", 0);
-  Ani.to(this, 1.5, "sceneZ", 0,Ani.SINE_OUT);
+  Ani.to(this, 1.5, "sceneZ", 0,Ani.SINE_OUT,"onEnd:movementEnd");
   Slide slide = (Slide) slides.get(currentSlide);
   Ani.to(slide, 1.5, "rotY", 0);
 
