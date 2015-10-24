@@ -955,7 +955,7 @@ void down() {
         fadeOutTextCurrentSlide();
       }
 
-
+      addScreenGrab();
 }
 
 void startPresentation() {
