@@ -5,6 +5,6 @@
    	"background": "f7941d",
    	"slidebackground": "959595",
    	"zDepth":2000,
-   	"serialPort": "/dev/tty.usbserial-A600eD9Z",
-   	"remote": "soft"
+   	"serialPort": "/dev/cu.AdafruitEZ-Link6771-SPP",
+   	"remote": "v3"
 }

@@ -1,7 +1,7 @@
+/dev/cu.AdafruitEZ-Link6771-SPP
 /dev/cu.Bluetooth-Incoming-Port
 /dev/cu.Bluetooth-Modem
 /dev/cu.LightBlue-Bean
-/dev/cu.usbserial-A600eD9Z
+/dev/tty.AdafruitEZ-Link6771-SPP
 /dev/tty.Bluetooth-Incoming-Port
 /dev/tty.Bluetooth-Modem
-/dev/tty.usbserial-A600eD9Z

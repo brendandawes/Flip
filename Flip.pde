@@ -235,6 +235,15 @@ presentationTitle = settings.getString("title");
       PLAY_VIDEO_BUTTON = 3;
 
     }
+     if (remote.equals("v3") == true){
+      
+      NEXT_SLIDE_BUTTON = 4;
+
+      PREV_SLIDE_BUTTON = 999;
+
+      PLAY_VIDEO_BUTTON = 999;
+
+    }
   } catch (Exception e) {}
 
   try {
