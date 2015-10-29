@@ -157,7 +157,8 @@ void setup() {
   background(0);
   rectMode(LEFT);
   setBaseFolder();
-  loadSettings();
+  thread("loadSettings");
+  //loadSettings();
   
  
 
@@ -299,7 +300,7 @@ try {
   arduino.pinMode(ZOOM_BUTTON, Arduino.INPUT);
   
 } catch (Exception e) {
-  
+  println("e: "+e);
 }
   
 
@@ -307,7 +308,7 @@ try {
 
 void draw() {
   
-  if (settings != null) {
+  if (settings != null && slides != null) {
   if (!isSummary){
   background(245);
 } else {
@@ -348,7 +349,13 @@ void draw() {
 
   readArduino();
   checkToTakeScreenGrab();
-  } 
+  } else {
+
+    background(255);
+    fill(0);
+    textSize(50);
+    text("Setting up...", width/2, height/2, width, height);
+  }
  
 }
 
@@ -376,7 +383,7 @@ void readArduino() {
 try {
   if (isArduinoHigh(NEXT_SLIDE_BUTTON) ) {
     advancePresentation();
-    println("high");
+    
   }
 
   if (isArduinoHigh(PREV_SLIDE_BUTTON)) {
@@ -464,7 +471,6 @@ void showOverview() {
 
 void addScreenGrab(){
 
-  println("adding screengrab for slide: "+scriptCounter);
 
   PImage screenGrab = get();
 
