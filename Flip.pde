@@ -939,6 +939,11 @@ if (command.equals("start") == true){
     down();
   }
 
+  if (command.equals("playVideo") == true){
+    playVideo();
+    scriptCounter++;
+  }
+
   
 
 }
@@ -957,6 +962,9 @@ void rewindPresentation(){
 
     if (command.equals("nextImage") == true){
     up();
+  }
+    if (command.equals("playVideo") == true){
+    rewindPresentation();
   }
 
 

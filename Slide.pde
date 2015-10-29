@@ -24,8 +24,13 @@ class Slide{
     this.images = images;
     this.caption = null;
     if (images.size() > 1){
-      for (int i=1; i < images.size(); i++){
+      for (int i=0; i < images.size(); i++){
+        if (videoFileExistsForImage((File) images.get(i))){
+          script.add("playVideo");
+        }
+        if (i < images.size()-1){
         script.add("nextImage");
+      }
       }
    }
 
@@ -62,6 +67,8 @@ class Slide{
   this.y = y;
   this.z = z;
   this.rotY = 0;
+
+  
     
   }
 
@@ -128,7 +135,11 @@ class Slide{
 
     File videoFileToCheck;
 
+
+
     videoFileToCheck = new File(file.getPath()+".mov");
+
+
 
     if (videoFileToCheck.exists()){
         videoFile = videoFileToCheck;
