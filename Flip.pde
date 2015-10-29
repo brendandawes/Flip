@@ -121,9 +121,9 @@ float lastDebounceTime = 0;
 
  int DEBOUNCE_DELAY = 500;
 
-int NEXT_SLIDE_BUTTON = 2;
+int NEXT_SLIDE_BUTTON = 4;
 
- int PREV_SLIDE_BUTTON = 3;
+ int PREV_SLIDE_BUTTON = 5;
 
  int DOWN_BUTTON = 0;
 
@@ -294,10 +294,10 @@ try {
   }
   arduino.pinMode(NEXT_SLIDE_BUTTON, Arduino.INPUT);
   arduino.pinMode(PREV_SLIDE_BUTTON, Arduino.INPUT);
-  arduino.pinMode(PLAY_VIDEO_BUTTON, Arduino.INPUT);
-  arduino.pinMode(DOWN_BUTTON, Arduino.INPUT);
-  arduino.pinMode(UP_BUTTON, Arduino.INPUT);
-  arduino.pinMode(ZOOM_BUTTON, Arduino.INPUT);
+  //arduino.pinMode(PLAY_VIDEO_BUTTON, Arduino.INPUT);
+  //arduino.pinMode(DOWN_BUTTON, Arduino.INPUT);
+  //arduino.pinMode(UP_BUTTON, Arduino.INPUT);
+  //arduino.pinMode(ZOOM_BUTTON, Arduino.INPUT);
   
 } catch (Exception e) {
   println("e: "+e);
@@ -389,7 +389,7 @@ try {
   if (isArduinoHigh(PREV_SLIDE_BUTTON)) {
     rewindPresentation();
   }
-
+/*
   if (isArduinoHigh(UP_BUTTON)) {
     up();
   }
@@ -405,6 +405,7 @@ try {
   if (isArduinoHigh(ZOOM_BUTTON)) {
     toggleZoom();
   }
+  */
   
 } catch (Exception e) {
   

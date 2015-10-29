@@ -6,5 +6,6 @@
    	"slidebackground": "959595",
    	"zDepth":2000,
    	"serialPort": "/dev/cu.AdafruitEZ-Link6771-SPP",
-   	"nextButton": 4
+   	"nextButton": 4,
+   	"prevButton": 5
 }
