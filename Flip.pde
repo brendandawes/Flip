@@ -193,7 +193,6 @@ Boolean isExportedAppVersion(File f){
 void initApp() {
 
   onscreenMessage = "Setting Up";
-
   xStep = width*2;
   yStep = height*2;
   totalWidth = xStep*numberColumns;
@@ -261,7 +260,7 @@ presentationTitle = settings.getString("title");
 
   try {
     serialPortForArduino = settings.getString("serialPort");
-    initArduino();
+    thread("initArduino");
   } catch (Exception e) {}
 
   
