@@ -135,6 +135,8 @@ int NEXT_SLIDE_BUTTON = 4;
 
  int nextIntervalToTakeScreenGrab = 9999999;
 
+ String onscreenMessage = "One moment";
+
 
 void setup() {
 
@@ -190,6 +192,8 @@ Boolean isExportedAppVersion(File f){
 
 void initApp() {
 
+  onscreenMessage = "Setting Up";
+
   xStep = width*2;
   yStep = height*2;
   totalWidth = xStep*numberColumns;
@@ -205,6 +209,8 @@ void initApp() {
 
 void loadSettings() {
 
+  onscreenMessage = "Loading Settings";
+
   try {
     settings = loadJSONObject(folder+"/settings.json");
     parseSettings();
@@ -217,6 +223,8 @@ void loadSettings() {
 }
 
 void parseSettings() {
+
+onscreenMessage = "Reading Settings";
 
 numberColumns = settings.getInt("columns");
 
@@ -286,9 +294,12 @@ void createSettings(){
 
 void initArduino() {
 
+  onscreenMessage = "Checking for Remote";
+
 try {
 
   arduino = new Arduino(this, serialPortForArduino, 57600);
+  onscreenMessage = "Found Remote";
   if (arduino != null) {
     saveStrings("serialports.txt", arduino.list());
   }
@@ -301,6 +312,7 @@ try {
   
 } catch (Exception e) {
   println("e: "+e);
+  onscreenMessage = "Remote not Found";
 }
   
 
@@ -352,9 +364,10 @@ void draw() {
   } else {
 
     background(255);
-    fill(0);
+    fill(100);
     textSize(50);
-    text("Setting up...", width/2, height/2, width, height);
+    float w = textWidth(onscreenMessage);
+    text(onscreenMessage.toUpperCase(), width/2-(w/2), height/2, width, height);
   }
  
 }
@@ -1048,7 +1061,7 @@ void down() {
         fadeOutTextCurrentSlide();
       }
 
-      movementEnd();
+      //movementEnd();
 }
 
 void startPresentation() {

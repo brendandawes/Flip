@@ -66,7 +66,7 @@ if (key == ' ') {
 
 if (key == 'r') {
   resetVideo();
-
+  initArduino();
   initApp();
 }
 

@@ -27,6 +27,7 @@ class Slide{
       for (int i=0; i < images.size(); i++){
         if (videoFileExistsForImage((File) images.get(i))){
           script.add("playVideo");
+          script.add("playVideo");
         }
         if (i < images.size()-1){
         script.add("nextImage");
