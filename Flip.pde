@@ -201,7 +201,7 @@ void initApp() {
   sceneX = width/2;
   sceneY = height/2;
   startTime = 0;
-  screens = new ArrayList<PImage>();
+
   getSlides();
   showOverview();
 
@@ -1065,6 +1065,7 @@ void down() {
 }
 
 void startPresentation() {
+  screens = new ArrayList<PImage>();
   isSummary = false;
   startTime = millis();
   resetVideo();
