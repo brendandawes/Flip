@@ -510,6 +510,8 @@ void drawThankyou() {
   String lines[] = split("Thank you",'\n');
   float xOffset = textWidth(lines[0]);
   pushMatrix();
+  rotateY(radians(22));
+  rotateX(radians(22));
   translate(0, 0, 100);
   drawTextBlocks(lines,-xOffset/2, 0,color(0,0,0),255);
   popMatrix();
@@ -716,7 +718,7 @@ void resetVideo() {
    if (slide.videoFile != null && isPlayingVideo) {
       movie.stop();
       isPlayingVideo = false;
-      fadeInTextCurrentSlide();
+      //fadeInTextCurrentSlide();
    }
 
 }

@@ -23,7 +23,7 @@ class Slide{
     this.file = file;
     this.images = images;
     this.caption = null;
-    if (images.size() > 1){
+    if (images.size() > 0){
       for (int i=0; i < images.size(); i++){
         if (videoFileExistsForImage((File) images.get(i))){
           script.add("playVideo");
